@@ -30,11 +30,9 @@ export default{
 
 <template>
 
-  <div class="container">
 
-    <Main />
+  <Main />
 
-  </div>
 
 </template>
 
