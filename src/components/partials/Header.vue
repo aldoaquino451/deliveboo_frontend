@@ -22,7 +22,7 @@ export default{
     <div class="container">
       <div class="row d-flex justify-content-between">
         <div class="col-2">LOGO</div>
-        <div class="col-4 d-flex justify-content-between">
+        <div class="col-2 d-flex justify-content-between">
           <a :href="store.loginUrl">Login</a>
           <div>Chart</div>
         </div>
@@ -34,6 +34,10 @@ export default{
 </template>
 
 <style lang="scss" scoped>
+
+  header {
+    background-color: orange;
+  }
 
 </style>
 

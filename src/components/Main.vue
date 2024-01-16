@@ -15,11 +15,15 @@ export default{
 </script>
 
 <template>
+  <main class="prova">
 
-  <h1>MAIN</h1>
-  
+      <h1>MAIN</h1>
+
+  </main>
 </template>
 
 <style lang="scss" scoped>
+
+
 
 </style>

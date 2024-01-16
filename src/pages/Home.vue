@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../data/store'; 
-import Main from '../components/Main.Vue';
+import Main from '../components/Main.vue';
 
 export default{
 
@@ -30,11 +30,11 @@ export default{
 
 <template>
 
-  <div>
-    <p class="fs-1">{{ saluto }}</p>
-  </div>
+  <div class="container">
 
-  <Main />
+    <Main />
+
+  </div>
 
 </template>
 
