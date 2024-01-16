@@ -1,21 +1,29 @@
 <script>
+import Header from './components/partials/Header.vue';
+import Footer from './components/partials/Footer.vue';
+
 export default{
+
   name: 'App',
+  components: {
+    Header,
+    Footer
+  },
+
   data() {
     return {
-      saluto: 'ciao'
     }
   },
+
 }
 </script>
 
 <template>
-  <header>
-  <div>
-    <p class="fs-1">{{ saluto }}</p>
-    <a href="http://127.0.0.1:8000/login">Login</a>
-  </div>
-  </header>
+
+  <Header />
+  <RouterView />
+  <Footer />
+  
 </template>
 
 <style>
