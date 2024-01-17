@@ -14,6 +14,16 @@ export default {
   },
 
   methods: {
+    addTypology(typology){
+      const index = this.store.searchTypologies.indexOf(typology)
+
+      if (index === -1) {
+        this.store.searchTypologies.push(typology)
+      }else {
+        this.store.searchTypologies.splice(index, 1)
+      }
+
+    }
   },
 
   mounted() {
@@ -29,12 +39,12 @@ export default {
       <ul class="d-flex flex-wrap justify-content-center">
         <li class="list-unstyled my-1" v-for="typology in store.typologies" :key="typology.id">
           <div class="form-check">
-            <input type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.name">
+            <input @click="addTypology(typology.id)" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
             <label class="btn btn-outline-primary" :for="typology.name">{{typology.name}}</label>
           </div>
         </li>
       </ul>
-      <button class="btn btn-primary">Cerca</button>
+      <button @click="$emit('startSearch')" class="btn btn-primary">Cerca</button>
     </nav>
   </div>
 

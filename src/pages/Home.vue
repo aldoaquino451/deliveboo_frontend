@@ -35,6 +35,20 @@ export default{
         // this.isLoaded = true;
         store.typologies = results.data;
       })
+    },
+
+    getApiRestaurantByTypologies() {
+      // this.isLoaded = false;
+      if (store.searchTypologies.length == 0) {
+        this.getApi(store.apiUrl + 'restaurants')
+      } else {
+        
+        axios.get(store.apiUrl + 'restaurants-by-typologies/' + store.searchTypologies.join("-"))
+        .then(results => {
+          // this.isLoaded = true;
+          store.restaurants = results.data;
+        })
+      }
     }
 
 
@@ -51,7 +65,7 @@ export default{
 <template>
 
 
-  <SearchByTypologies />
+  <SearchByTypologies @startSearch="getApiRestaurantByTypologies" />
   <Main />
 
 

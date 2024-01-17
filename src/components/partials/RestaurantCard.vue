@@ -33,7 +33,7 @@ export default {
         </div>
       </div>
       <div class="card-body">
-        <h6 class="card-title fw-bold text-uppercase">{{ restaurant.name }}</h6>
+        <h6 class="card-title fw-bold text-uppercase">{{ restaurant.name_restaurant }}</h6>
         <p class="card-text">{{ restaurant.description }}</p>
       </div>
       <ul class="list-group list-group-flush">

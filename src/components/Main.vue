@@ -23,7 +23,7 @@ export default{
     <div class="container">
       <h1>MAIN</h1>
       
-      <div class="row">
+      <div class="row row-cols-4">
         <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
       </div>
 
