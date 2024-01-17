@@ -30,5 +30,6 @@ export default{
   footer {
     color: white;
     background-color: black;
+    text-align: center;
   }
 </style>

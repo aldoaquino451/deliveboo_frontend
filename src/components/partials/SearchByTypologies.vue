@@ -33,24 +33,40 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <h1>CERCA PER TIPOLOGIA</h1>
-    <nav class="d-flex flex-column align-items-center">
-      <ul class="d-flex flex-wrap justify-content-center">
-        <li class="list-unstyled my-1" v-for="typology in store.typologies" :key="typology.id">
-          <div class="form-check">
-            <input @click="addTypology(typology.id)" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
-            <label class="btn btn-outline-primary" :for="typology.name">{{typology.name}}</label>
-          </div>
-        </li>
-      </ul>
-      <button @click="$emit('startSearch')" class="btn btn-primary">Cerca</button>
-    </nav>
-  </div>
-
-
+  <section>
+    <div class="container">
+      <nav class="d-flex flex-column align-items-center">
+        <ul class="d-flex flex-wrap justify-content-center">
+          <li class="list-unstyled my-1" v-for="typology in store.typologies" :key="typology.id">
+            <div class="form-check">
+              <input @click="addTypology(typology.id)" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
+              <label class="btn btn-outline-light" :for="typology.name">{{typology.name}}</label>
+            </div>
+          </li>
+        </ul>
+        <button @click="$emit('startSearch')" class="btn btn-light">Cerca</button>
+      </nav>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
+  section{
+    margin-top: 70px;
+    background-color: orange;
+    .container{
+      max-width: 700px;
+      .btn-outline-light{
+        border-color: black;
+        &:hover{
+          background-color: white;
+          color: black;
+        }
+      }
+      .btn-light{
+        border-color: black;
+      }
+    }
+  }
   
 </style>

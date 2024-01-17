@@ -1,4 +1,5 @@
 <script>
+import { RouterLink } from 'vue-router';
 import { store } from '../data/store';
 import RestaurantCard from './partials/RestaurantCard.vue';
 
@@ -6,8 +7,9 @@ export default{
 
   name: 'Main',
   components: {
-    RestaurantCard
-  },
+    RestaurantCard,
+    RouterLink
+},
 
   data() {
     return {
@@ -21,11 +23,12 @@ export default{
 <template>
   <main>
     <div class="container">
-      <h1>MAIN</h1>
       
-      <div class="row row-cols-4">
-        <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
-      </div>
+      <router-link :to="{name: 'detailRestaurant' }">
+        <div class="row row-cols-4">
+          <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
+        </div>
+      </router-link>
 
     </div>
 
@@ -33,7 +36,11 @@ export default{
 </template>
 
 <style lang="scss" scoped>
-
-
-
+  main{
+    background-color: orange;
+    padding-top: 50px;
+    a{
+      text-decoration: none;
+    }
+  }
 </style>

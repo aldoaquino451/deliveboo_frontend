@@ -52,13 +52,20 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
 .card {
   min-height: 300px;
-
-  img {
-    max-height: 100px;
-  }
+  transition: transform 0.3s ease;
+  box-shadow: 0px 1px 10px 0px black;
+    &:hover{
+      transform: scale(1.02);
+    }
+    h6 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
 }
 
-  
 </style>
