@@ -24,11 +24,10 @@ export default{
   <main>
     <div class="container">
       
-      <router-link :to="{name: 'detailRestaurant' }">
+      
         <div class="row row-cols-4">
           <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
         </div>
-      </router-link>
 
     </div>
 

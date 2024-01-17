@@ -2,17 +2,50 @@
 
 import axios from 'axios';
 import { store } from '../data/store'; 
-import Main from '../components/Main.vue';
-import SearchByTypologies from '../components/partials/SearchByTypologies.vue';
 
 export default{
-name: 'detailRestaurant'
+name: 'detailRestaurant',
+
+components:{
+  },
+
+  data() {
+    return {
+      restaurant:{}
+
+    }
+  },
+
+  methods: {
+    getRestaurant(slug) {
+      console.log(slug)
+      axios.get(store.apiUrl + 'restaurant/' + slug)
+      .then(res => {
+        // if(!res.data.restaurant){
+        //   this.$router.push({name: 'error-404'})
+        // }
+        console.log(res)
+        this.restaurant = res.data;
+      })
+    },
+
+    
+  },
+
+  mounted() {
+    this.getRestaurant(this.$route.params.slug);
+
+
+  },
+
 }
+
 </script>
 
 <template>
   <section>
     <h1>dettaglio ristorante e menu</h1>
+    <h2>{{ restaurant.name_restaurant }}</h2>
   </section>
 
 </template>
