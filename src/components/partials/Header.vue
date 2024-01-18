@@ -32,7 +32,7 @@ export default{
             <a :href="store.loginUrl"><i class="fa-solid fa-user"></i></a>
           </div>            
           <div>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            <router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link>
           </div>
         </div>
 

@@ -8,7 +8,7 @@ export default{
   name: 'Main',
   components: {
     RestaurantCard,
-    RouterLink
+    RouterLink,
 },
 
   data() {

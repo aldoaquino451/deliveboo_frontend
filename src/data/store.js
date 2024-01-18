@@ -6,5 +6,5 @@ export const store = reactive({
   restaurants:[],
   typologies:[],
   searchTypologies:[],
-  
+  cart: [],
 });
