@@ -24,13 +24,14 @@ export default{
   <main>
     <div class="container">
       
-      
-        <div class="row row-cols-4">
-          <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
-        </div>
+      <div v-if="store.restaurants.length != 0" class="row row-cols-4" >
+        <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
+      </div>
+      <div v-else>
+        <p class=" text-center">Non ci sono ristoranti per le tipologie scelte</p>
+      </div>
 
     </div>
-
   </main>
 </template>
 

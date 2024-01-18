@@ -61,7 +61,8 @@ export default {
 .card {
   min-height: 300px;
   transition: transform 0.3s ease;
-  box-shadow: 0px 1px 10px 0px black;
+  box-shadow: 0px 0px 7px 4px rgba(0, 0, 0, 0.2);
+  border: none !important;
     &:hover{
       transform: scale(1.02);
     }
