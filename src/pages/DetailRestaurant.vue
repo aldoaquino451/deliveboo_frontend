@@ -70,7 +70,7 @@ components:{
           <div v-if="product.category.name === category">
 
             <h3>{{product.name}}</h3>
-            <p><span class="fw-bold">Ingredienti:</span>{{product.ingredints}}</p>
+            <p><span class="fw-bold">Ingredienti:</span>{{product.ingredients}}</p>
             <p><span class="fw-bold">Prezzo: </span>€ {{ product.price}}</p>
             <p v-if="product.is_vegan">prodotto vegano</p>
             <button class="btn btn-success">+</button>
