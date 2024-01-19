@@ -1,81 +1,55 @@
 <script>
 import axios from 'axios';
-import { store, addToCart, getQuantityInCart } from '../data/store';
+import { store, addToCart, getQuantityInCart, removeFromCart } from '../data/store';
 
 export default {
   name: 'detailRestaurant',
-
-  components: {},
 
   data() {
     return {
       restaurant: {},
       categories: [],
       products: [],
+      productId: [],
     };
   },
 
-  
   methods: {
     getRestaurant(slug) {
-      
       axios.get(store.apiUrl + 'restaurant/' + slug)
-      .then(res => {
-        // if(!res.data.restaurant){
-        //   this.$router.push({name: 'error-404'})
-        // }
-        
-        this.restaurant = res.data;
-
-        this.products = res.data.products;
-        // console.log(this.products);
-        // this.visibleProducts = this.products;
-       
-        this.products.forEach(product =>{
-          // const category = product.category;
-          // !this.categories.includes(category) ? this.categories.push(category) : null;
-          const category = product.category;
-          const isCategoryAlreadyAdded = this.categories.some(existingCategory => existingCategory.id === category.id);
-
-          if (!isCategoryAlreadyAdded) {
-            this.categories.push(category);
-          }
+        .then(res => {
+          this.restaurant = res.data;
+          this.products = res.data.products;
           
-        })
-        console.log(this.categories);
-        
-      })
-      
+          this.products.forEach(product => {
+            const category = product.category;
+            const isCategoryAlreadyAdded = this.categories.some(existingCategory => existingCategory.id === category.id);
+
+            if (!isCategoryAlreadyAdded) {
+              this.categories.push(category);
+            }
+          });
+        });
     },
 
     addToCart(product) {
       addToCart(product);
     },
 
+    removeFromCart(productId) {
+      removeFromCart(productId);
+    },
+
     getQuantityInCart(product) {
       return getQuantityInCart(product);
     },
 
-    getProductsByCategory(restaurant_id, category_id){
+    getProductsByCategory(restaurant_id, category_id) {
       axios.get(store.apiUrl + 'restaurant/product-category/' + 'productByCategory?restaurant_id=' + restaurant_id + '&category_id=' + category_id)
-      .then(res => {
-
-        console.log(res.data);
-
-        this.products = res.data;
-
-        console.log(this.products);
-        
-      })
-
-
+        .then(res => {
+          this.products = res.data;
+        });
     }
-    // selectCategory(category_name) {
-    //   const productsByCategoryName = this.products.filter(product => product.category.name === category_name);
-    //   this.visibleProducts = productsByCategoryName;
-    //   console.log( this.visibleProducts);
-   
-    // }
   },
 
   mounted() {
@@ -94,13 +68,16 @@ export default {
 
       <div class="d-flex justify-content-center">
 
+        <button @click="getRestaurant(restaurant.slug)" type="button" class="btn btn-warning mx-2 text-center">Tutto</button>
+        
         <button @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category.name}}</button>
+
       </div>
 
       <div class="my-5" v-for="category in categories" :key="category.id">
 
-        <h2 class="text-success">{{category.name}}</h2>
-        
+        <h2 v-if="this.products.some(product => product.category_id === category.id)" class="text-success">{{category.name}}</h2>
+
         <div class="my-3" v-for="product in products" :key="product.id">
           <div v-if="product.category.name === category.name">
 
@@ -110,9 +87,13 @@ export default {
             <p v-if="product.is_vegan">prodotto vegano</p>
 
             <div>
-              <span v-if="getQuantityInCart(product) > 0">Quantità nel carrello: {{ getQuantityInCart(product) }}</span>
               <button class="btn btn-success" @click="addToCart(product)">+</button>
+              <span v-if="getQuantityInCart(product) > 0">
+                <span>Quantità nel carrello: {{ getQuantityInCart(product) }}</span>
+                <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
+              </span>
             </div>
+
           </div>
         </div>
       </div>

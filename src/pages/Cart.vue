@@ -15,13 +15,11 @@ export default {
       cartItem.quantity++;
       store.saveCart(store.cart);
     },
-    
 
     decrementQuantity(cartItem) {
       if (cartItem.quantity > 1) {
         cartItem.quantity--;
       } else {
-        // Rimuovi l'elemento se la quantità è 1 o inferiore
         removeFromCart(cartItem.product.id);
       }
       store.saveCart(store.cart);
