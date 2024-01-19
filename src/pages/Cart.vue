@@ -15,6 +15,7 @@ export default {
       cartItem.quantity++;
       store.saveCart(store.cart);
     },
+    
 
     decrementQuantity(cartItem) {
       if (cartItem.quantity > 1) {
