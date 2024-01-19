@@ -48,24 +48,13 @@ export default {
       
     },
 
-    addProductToCart(product_id) {
-      store.cart.push(product_id);
-      console.log(store.cart);
+    addToCart(product) {
+      addToCart(product);
     },
 
-    removeProductToCart(product_id) {
-      const index = this.store.cart.indexOf(product_id);
-
-      store.cart.splice(index, 1);
-      console.log(store.cart);
+    getQuantityInCart(product) {
+      return getQuantityInCart(product);
     },
-
-    countProduct(product_id) {
-      const elementByProductId = store.cart.filter(product => product.id === product_id);
-      const count = elementByProductId.length;
-      return count;
-    },
-
 
     getProductsByCategory(restaurant_id, category_id){
       axios.get(store.apiUrl + 'restaurant/product-category/' + 'productByCategory?restaurant_id=' + restaurant_id + '&category_id=' + category_id)
