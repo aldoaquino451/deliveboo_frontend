@@ -14,7 +14,7 @@ components:{
       restaurant:{},
       categories: [],
       products: [],
-      visibleProducts: [],
+      // visibleProducts: [],
       store
     }
   },
@@ -32,17 +32,21 @@ components:{
         this.restaurant = res.data;
 
         this.products = res.data.products;
-        console.log(this.products);
-        this.visibleProducts = this.products;
+        // console.log(this.products);
+        // this.visibleProducts = this.products;
        
         this.products.forEach(product =>{
-          const categoryName = product.category.name;
-          if(!this.categories.includes(categoryName)) {
+          // const category = product.category;
+          // !this.categories.includes(category) ? this.categories.push(category) : null;
+          const category = product.category;
+          const isCategoryAlreadyAdded = this.categories.some(existingCategory => existingCategory.id === category.id);
 
-            this.categories.push(categoryName);
+          if (!isCategoryAlreadyAdded) {
+            this.categories.push(category);
           }
           
         })
+        console.log(this.categories);
         
       })
       
@@ -61,20 +65,32 @@ components:{
     },
 
     countProduct(product_id) {
-
-
       const elementByProductId = store.cart.filter(product => product.id === product_id);
       const count = elementByProductId.length;
       return count;
     },
-    selectCategory(category_name) {
-     
-    
-      const productsByCategoryName = this.products.filter(product => product.category.name === category_name);
-      this.visibleProducts = productsByCategoryName;
-      console.log( this.visibleProducts);
-   
+
+
+    getProductsByCategory(restaurant_id, category_id){
+      axios.get(store.apiUrl + 'restaurant/product-category/' + 'productByCategory?restaurant_id=' + restaurant_id + '&category_id=' + category_id)
+      .then(res => {
+
+        console.log(res.data);
+
+        this.products = res.data;
+
+        console.log(this.products);
+        
+      })
+
+
     }
+    // selectCategory(category_name) {
+    //   const productsByCategoryName = this.products.filter(product => product.category.name === category_name);
+    //   this.visibleProducts = productsByCategoryName;
+    //   console.log( this.visibleProducts);
+   
+    // }
 
 
     
@@ -100,14 +116,15 @@ components:{
 
       <div class="d-flex justify-content-center">
 
-        <button @click="selectCategory(category)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category}}</button>
+        <button @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category.name}}</button>
       </div>
 
       <div class="my-5" v-for="category in categories" :key="category.id">
-        <h2 class="text-success">{{category}}</h2>
 
-        <div class="my-3" v-for="product in visibleProducts" :key="product.id">
-          <div v-if="product.category.name === category">
+        <h2 class="text-success">{{category.name}}</h2>
+        
+        <div class="my-3" v-for="product in products" :key="product.id">
+          <div v-if="product.category.name === category.name">
 
             <h4>{{product.name}}</h4>
             <p><span class="fw-bold">Ingredienti:</span>{{product.ingredients}}</p>
@@ -115,8 +132,11 @@ components:{
             <p v-if="product.is_vegan">prodotto vegano</p>
 
             <button @click="addProductToCart(product)" class="btn btn-success">+</button>
-            <span class="mx-4">{{countProduct(product.id)}}</span>
-            <button @click="removeProductToCart(product)" class="btn btn-success">-</button>
+            <span v-if="countProduct(product.id) !== 0">
+              <span class="mx-4">{{countProduct(product.id)}}</span>
+              <button @click="removeProductToCart(product)" class="btn btn-success">-</button>
+            </span>
+
           </div>
         </div>
       </div>
