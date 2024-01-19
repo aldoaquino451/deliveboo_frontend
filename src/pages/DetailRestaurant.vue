@@ -19,6 +19,7 @@ components:{
     }
   },
 
+  
   methods: {
     getRestaurant(slug) {
       
