@@ -60,17 +60,44 @@ export default {
 
 <template>
   <main>
+
+    <div class="position-relative heroes w-100">
+      <img class="w-100 h-100 object-fit-cover" src="/public/ristorante.jpg" alt="">
+      
+      <div class="details-restaurant position-absolute start-50 translate-middle-x card w-50 p-3">
+        <h1>{{ restaurant.name_restaurant }}</h1>
+
+        <div class="d-flex">
+          <span class="fw-bold">Tipologia: </span>
+          <span class="mx-2" v-for="typology in restaurant.typologies" :key="typology.id">{{ typology.name }}</span>
+        </div>
+
+        <p class="mt-3"><span class="fw-bold">Descrizione:</span> {{ restaurant.description }}</p>
+      </div>
+
+    </div>
+
     <div class="container">
-      <router-link class="btn btn-primary my-5" :to="{ name: 'home' }">Torna </router-link>
-      <h1>{{ restaurant.name_restaurant }}</h1>
-      <span class="fw-bold">Tipologia: </span><span class="mx-2" v-for="typology in restaurant.typologies" :key="typology.id">{{ typology.name }}</span>
-      <p class="mt-5"><span class="fw-bold">Descrizione:</span> {{ restaurant.description }}</p>
+      <router-link class="btn btn-primary my-3" :to="{ name: 'home' }">Torna alla lista ristoranti </router-link>
+      <div class="d-flex justify-content-center mt-5">
 
-      <div class="d-flex justify-content-center">
+<!-- PROVA -->
+        <div class="row pt-5">
+          <div class="col category-menu text-center" @click="getRestaurant(restaurant.slug)">
+            <img class="rounded-circle object-fit-cover" width="80" height="80" src="/public/pizza.jpg" alt="">
+            <p>MENU COMPLET0</p>
+          </div>
+          <div class="col category-menu text-center" @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id">
+            <img class="rounded-circle object-fit-cover" width="80" height="80" src="/public/pizza.jpg" alt="">
+            <p class="text-uppercase">{{ category.name }}</p>
+          </div>
+        </div>
+<!-- FINE PROVA -->
 
-        <button @click="getRestaurant(restaurant.slug)" type="button" class="btn btn-warning mx-2 text-center">Tutto</button>
+
+        <!-- <button @click="getRestaurant(restaurant.slug)" type="button" class="btn btn-warning mx-2 text-center">Tutto</button> -->
         
-        <button @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category.name}}</button>
+        <!-- <button @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category.name}}</button> -->
 
       </div>
 
@@ -78,20 +105,30 @@ export default {
 
         <h2 v-if="this.products.some(product => product.category_id === category.id)" class="text-success">{{category.name}}</h2>
 
-        <div class="my-3" v-for="product in products" :key="product.id">
+        <div v-for="product in products" :key="product.id">
           <div v-if="product.category.name === category.name">
 
-            <h4>{{product.name}}</h4>
-            <p><span class="fw-bold">Ingredienti:</span>{{product.ingredients}}</p>
-            <p><span class="fw-bold">Prezzo: </span>€ {{ product.price}}</p>
-            <p v-if="product.is_vegan">prodotto vegano</p>
+            <div class="col-6 p-3">
+              <div class="card d-flex flex-row py-3 pe-3">
+                <div class="image w-25 h-100">
+                  <img class="w-100 object-fit-cover" src="/public/placeholder.png" alt="">
+                </div>
+                <div class="content-details ps-3">
+                  <h4>{{product.name}}</h4>
+                  <p><span class="fw-bold">Ingredienti:</span>{{product.ingredients}}</p>
+                  <p><span class="fw-bold">Prezzo: </span>€ {{ product.price}}</p>
+                  <p v-if="product.is_vegan">prodotto vegano</p>
 
-            <div>
-              <button class="btn btn-success" @click="addToCart(product)">+</button>
-              <span v-if="getQuantityInCart(product) > 0">
-                <span>Quantità nel carrello: {{ getQuantityInCart(product) }}</span>
-                <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
-              </span>
+                  <div>
+                    <button class="btn btn-success" @click="addToCart(product)">+</button>
+                    <span v-if="getQuantityInCart(product) > 0">
+                      <span>Quantità nel carrello: {{ getQuantityInCart(product) }}</span>
+                      <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
+                    </span>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
           </div>
@@ -107,6 +144,24 @@ export default {
   
     h1{
       text-align: center;
+    }
+
+    .heroes {
+      height: 350px;
+      background-color: red;
+
+      .details-restaurant{
+        top: 75%;
+      }
+    }
+
+    .category-menu{
+      cursor: pointer;
+      transition: all 0.5s;
+      &:hover{
+        scale: 1.1;
+      }
+
     }
   }
 </style>
