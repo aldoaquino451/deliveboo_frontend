@@ -49,7 +49,10 @@ export default {
 
     <div>
       <p>Totale: €{{ totalAmount.toFixed(2) }}</p>
-      <button type="button" class="btn btn-success">Conferma</button>
+      <router-link to="/payment">
+        <button type="button" class="btn btn-success">Conferma</button>
+      </router-link>
+      
     </div>
 
   </section>

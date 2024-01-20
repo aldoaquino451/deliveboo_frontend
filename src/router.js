@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Cart from "./pages/Cart.vue";
 import Home from "./pages/Home.vue";
+import Payment from "./pages/Payment.vue";
 import DetailRestaurant from "./pages/DetailRestaurant.vue";
 
 const router =  createRouter ({
@@ -21,6 +22,11 @@ const router =  createRouter ({
       path:"/cart",
       name:"cart",
       component: Cart
+    },
+    {
+      path:"/payment",
+      name:"payment",
+      component: Payment
     }
   ]
 });
