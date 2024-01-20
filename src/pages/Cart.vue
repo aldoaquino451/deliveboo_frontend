@@ -8,6 +8,12 @@ export default {
     cart() {
       return store.cart;
     },
+
+    totalAmount() {
+      return this.cart.reduce((total, cartItem) => {
+        return total + cartItem.product.price * cartItem.quantity;
+      }, 0);
+    },
   },
 
   methods: {
@@ -40,17 +46,27 @@ export default {
         <button @click="decrementQuantity(cartItem)">-</button>
       </li>
     </ul>
+
+    <div>
+      <p>Totale: €{{ totalAmount.toFixed(2) }}</p>
+      <button type="button" class="btn btn-success">Conferma</button>
+    </div>
+
   </section>
 </template>
 
 <style lang="scss" scoped>
   section{
     margin-top: 70px;
+    margin-bottom: 70px;
     height: 300px;
     text-align: center;
     i{
       font-size: 2rem;
       color: black;
+    }
+    .btn{
+      width: 100px;
     }
   }
 </style>
