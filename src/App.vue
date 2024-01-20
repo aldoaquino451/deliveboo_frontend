@@ -1,6 +1,6 @@
 <script>
-import Header from './components/partials/Header.vue';
-import Footer from './components/partials/Footer.vue';
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
 export default{
 
@@ -21,12 +21,26 @@ export default{
 <template>
 
   <Header />
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
   <Footer />
   
 </template>
 
 <style>
+
+main {
+  background-color: orange;
+  padding-top: calc(80px + 30px);
+  padding-bottom: 50px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 a {
   text-decoration: none;

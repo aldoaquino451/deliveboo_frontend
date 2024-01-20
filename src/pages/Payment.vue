@@ -100,127 +100,125 @@ export default {
 </script>
 
 <template>
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 mb-4">
-          <div class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Dati utente</h5>
-            </div>
-            <div class="card-body">
-              <form class="mb-3">
-                <div class="row mb-4">
-                  <div class="col">
-                    <div class="form-outline">
-                      <input type="text" id="form6Example1" v-model="form.nome" class="form-control" />
-                      <label class="form-label" for="form6Example1">Nome</label>
-                      <span v-if="validationErrors.nome" class="text-danger">{{ validationErrors.nome }}</span>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-outline">
-                      <input type="text" id="form6Example2" v-model="form.cognome" class="form-control" />
-                      <label class="form-label" for="form6Example2">Cognome</label>
-                      <span v-if="validationErrors.cognome" class="text-danger">{{ validationErrors.cognome }}</span>
-                    </div>
+  <div class="container py-4">
+
+    <h3 class="mb-4">Riepilogo Pagamento</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <form class="mb-3">
+
+              <h4 class="mb-4">Dati utente</h4>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="form6Example1" v-model="form.nome" class="form-control" />
+                    <label class="form-label" for="form6Example1">Nome</label>
+                    <span v-if="validationErrors.nome" class="text-danger">{{ validationErrors.nome }}</span>
                   </div>
                 </div>
-
-                <!-- Text input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="form6Example4" v-model="form.indirizzo" class="form-control" />
-                  <label class="form-label" for="form6Example4">Indirizzo di consegna</label>
-                  <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.indirizzo }}</span>
-                </div>
-
-                <!-- Numero input -->
-                <div class="form-outline mb-4">
-                  <input type="number" id="form6Example6" v-model="form.telefono" class="form-control" />
-                  <label class="form-label" for="form6Example6">Telefono</label>
-                  <span v-if="validationErrors.telefono" class="text-danger">{{ validationErrors.telefono }}</span>
-                </div>
-
-                <hr class="my-4" />
-
-                <h5 class="mb-4">Pagamento</h5>
-
-                <div class="row mb-4">
-                  <div class="col">
-                    <div class="form-outline">
-                      <input type="text" id="formNameOnCard" v-model="form.titolareCarta" class="form-control" />
-                      <label class="form-label" for="formNameOnCard">Titolare della carta</label>
-                      <span v-if="validationErrors.titolareCarta" class="text-danger">{{ validationErrors.titolareCarta }}</span>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-outline">
-                      <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" />
-                      <label class="form-label" for="formCardNumber">Numero carta</label>
-                      <span v-if="validationErrors.numeroCarta" class="text-danger">{{ validationErrors.numeroCarta }}</span>
-                    </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="form6Example2" v-model="form.cognome" class="form-control" />
+                    <label class="form-label" for="form6Example2">Cognome</label>
+                    <span v-if="validationErrors.cognome" class="text-danger">{{ validationErrors.cognome }}</span>
                   </div>
                 </div>
+              </div>
 
-                <div class="row mb-4">
-                  <div class="col-3">
-                    <div class="form-outline">
-                      <input type="text" id="formExpiration" v-model="form.scadenza" class="form-control" />
-                      <label class="form-label" for="formExpiration">Scadenza</label>
-                      <span v-if="validationErrors.scadenza" class="text-danger">{{ validationErrors.scadenza }}</span>
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <div class="form-outline">
-                      <input type="text" id="formCVV" v-model="form.cvv" class="form-control" />
-                      <label class="form-label" for="formCVV">CVV</label>
-                      <span v-if="validationErrors.cvv" class="text-danger">{{ validationErrors.cvv }}</span>
-                    </div>
+              <!-- Text input -->
+              <div class="form-outline mb-4">
+                <input type="text" id="form6Example4" v-model="form.indirizzo" class="form-control" />
+                <label class="form-label" for="form6Example4">Indirizzo di consegna</label>
+                <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.indirizzo }}</span>
+              </div>
+
+              <!-- Numero input -->
+              <div class="form-outline mb-4">
+                <input type="number" id="form6Example6" v-model="form.telefono" class="form-control" />
+                <label class="form-label" for="form6Example6">Telefono</label>
+                <span v-if="validationErrors.telefono" class="text-danger">{{ validationErrors.telefono }}</span>
+              </div>
+
+              <h4 class="mb-4">Pagamento</h4>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="formNameOnCard" v-model="form.titolareCarta" class="form-control" />
+                    <label class="form-label" for="formNameOnCard">Titolare della carta</label>
+                    <span v-if="validationErrors.titolareCarta" class="text-danger">{{ validationErrors.titolareCarta }}</span>
                   </div>
                 </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" />
+                    <label class="form-label" for="formCardNumber">Numero carta</label>
+                    <span v-if="validationErrors.numeroCarta" class="text-danger">{{ validationErrors.numeroCarta }}</span>
+                  </div>
+                </div>
+              </div>
 
-                <button class="btn btn-primary btn-lg btn-block" @click.prevent="processPayment">
-                  Continue to checkout
-                </button>
-              </form>
-            </div>
+              <div class="row mb-4">
+                <div class="col-3">
+                  <div class="form-outline">
+                    <input type="text" id="formExpiration" v-model="form.scadenza" class="form-control" />
+                    <label class="form-label" for="formExpiration">Scadenza</label>
+                    <span v-if="validationErrors.scadenza" class="text-danger">{{ validationErrors.scadenza }}</span>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-outline">
+                    <input type="text" id="formCVV" v-model="form.cvv" class="form-control" />
+                    <label class="form-label" for="formCVV">CVV</label>
+                    <span v-if="validationErrors.cvv" class="text-danger">{{ validationErrors.cvv }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg btn-block" @click.prevent="processPayment">
+                Continue to checkout
+              </button>
+            </form>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-4 mb-4">
-          <div class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Riepilogo carrello</h5>
-            </div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                  Pizza Margherita
-                  <span>8,50€</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                  Spedizione
-                  <span>Gratis</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                  <div>
-                    <strong>Totale</strong>
-                  </div>
-                  <span><strong>8,50€</strong></span>
-                </li>
-              </ul>
-            </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Riepilogo carrello</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Pizza Margherita
+                <span>8,50€</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Spedizione
+                <span>Gratis</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Totale</strong>
+                </div>
+                <span><strong>8,50€</strong></span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  section {
-    margin-top: 140px;
-    margin-bottom: 70px;
-    text-align: center;
-  }
+
+label {
+  padding-top: 3px;
+  padding-left: 5px;
+}
 </style>

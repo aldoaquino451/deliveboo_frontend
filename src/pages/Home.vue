@@ -1,15 +1,15 @@
 <script>
 import axios from 'axios';
 import { store } from '../data/store'; 
-import Main from '../components/Main.vue';
-import SearchByTypologies from '../components/partials/SearchByTypologies.vue';
+import Typologies from '../components/partials/Typologies.vue';
+import Restaurants from '../components/partials/Restaurants.vue'; 
 
 export default{
 
   name: 'Home',
   components:{
-    Main,
-    SearchByTypologies
+    Typologies,
+    Restaurants,
   },
 
   data() {
@@ -64,10 +64,9 @@ export default{
 
 <template>
 
-
-  <SearchByTypologies @startSearch="getApiRestaurantByTypologies" />
-  <Main />
-
+  <Typologies @startSearch="getApiRestaurantByTypologies" />
+  
+  <Restaurants />
 
 </template>
 

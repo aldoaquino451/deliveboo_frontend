@@ -16,10 +16,10 @@ export default{
 
 <template>
 
-  <footer>
+  <footer class="py-3 bg-dark text-light">
     <div class="container">
 
-      <h1>FOOTER</h1>
+      <h4 class="m-0 text-center">by Team 5</h4>
 
     </div>
   </footer>
@@ -27,9 +27,5 @@ export default{
 </template>
 
 <style lang="scss" scoped>
-  footer {
-    color: white;
-    background-color: black;
-    text-align: center;
-  }
+
 </style>

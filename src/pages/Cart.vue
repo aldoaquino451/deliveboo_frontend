@@ -35,41 +35,40 @@ export default {
 </script>
 
 <template>
-  <section class="d-flex flex-column justify-content-between">
-    <h1>CARRELLO</h1>
-    <router-link to="/"><i class="fa-solid fa-house"></i></router-link>
+  <section class="container">
 
-    <ul>
-      <li v-for="cartItem in cart" :key="cartItem.product.id">
-        {{ cartItem.product.name }} - €{{ cartItem.product.price }} (Quantità: {{ cartItem.quantity }})
-        <button @click="incrementQuantity(cartItem)">+</button>
-        <button @click="decrementQuantity(cartItem)">-</button>
+    <h2 class="mb-4 text-uppercase text-center">Carrello</h2>
+    
+    <ol class="list-group mb-5 list-group-numbered">
+      <li v-for="cartItem in cart" :key="cartItem.product.id" class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <p class="fw-bold mb-1">
+            {{ cartItem.product.name }}
+            <span class="ps-3">&euro;{{ cartItem.product.price }}</span>
+          </p>
+          {{ cartItem.product.ingredients }}
+        </div>
+        <div class="d-inline-block">
+          <button @click="decrementQuantity(cartItem)" class="px-2 py-1 btn bg-info">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="px-2 fw-bold">{{ cartItem.quantity }}</span>
+          <button @click="incrementQuantity(cartItem)" class="px-2 py-1 btn bg-info">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
       </li>
-    </ul>
+    </ol>
 
-    <div>
-      <p>Totale: €{{ totalAmount.toFixed(2) }}</p>
+    <div class="d-flex justify-content-end">
       <router-link to="/payment">
-        <button type="button" class="btn btn-success">Conferma</button>
+        <button type="button" class="btn btn-success px-3">Totale: &euro;{{ totalAmount.toFixed(2) }}</button>
       </router-link>
-      
     </div>
 
   </section>
 </template>
 
 <style lang="scss" scoped>
-  section{
-    margin-top: 70px;
-    margin-bottom: 70px;
-    height: 300px;
-    text-align: center;
-    i{
-      font-size: 2rem;
-      color: black;
-    }
-    .btn{
-      width: 100px;
-    }
-  }
+
 </style>
