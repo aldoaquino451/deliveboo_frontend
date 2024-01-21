@@ -13,6 +13,12 @@ export default{
     }
   },
 
+  computed: {
+    totalQuantity() {
+      return store.cart.reduce((total, cartItem) => total + cartItem.quantity, 0);
+    }
+  }
+
 }
 </script>
 
@@ -31,8 +37,10 @@ export default{
           <div>
             <a :href="store.loginUrl"><i class="fa-solid fa-user"></i></a>
           </div>            
-          <div>
-            <router-link to="/cart"><i class="fa-solid fa-cart-shopping"></i></router-link>
+          <div class="position-relative">
+            <router-link to="/cart"><i class="fa-solid fa-cart-shopping mx-3"></i></router-link>
+            <div v-if="totalQuantity > 0" class="cart-quantity"><span>{{ totalQuantity }}</span></div>
+        
           </div>
         </div>
 
@@ -62,6 +70,19 @@ export default{
           &:hover{
             color: white;
           }
+        }
+        .cart-quantity {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: red;
+          color: white;
+          position: absolute;
+          top: 8px;
+          left: 0;
         }
     }
 
