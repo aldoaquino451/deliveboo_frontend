@@ -19,9 +19,12 @@ export default {
 
       if (index === -1) {
         this.store.searchTypologies.push(typology)
+       
       }else {
         this.store.searchTypologies.splice(index, 1)
       }
+
+    
 
     }
   },

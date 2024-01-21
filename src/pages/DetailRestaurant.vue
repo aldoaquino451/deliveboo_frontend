@@ -103,10 +103,10 @@ export default {
     </div>
 
     <div class="container">
-      <router-link class="btn btn-primary my-3" :to="{ name: 'home' }"
+      <router-link class="btn_return btn btn-primary" :to="{ name: 'home'}"
         >Torna alla lista ristoranti
       </router-link>
-      <div class="d-flex justify-content-center mt-5">
+      <div class="d-flex justify-content-center">
         <!-- PROVA -->
         <div class="row pt-5">
           <div
@@ -157,7 +157,7 @@ export default {
 
         <div class="row my-5">
           <div v-for="product in products" :key="product.id" class="col-6 mb-4">
-            <div class="card h-100 d-flex flex-row py-3 pe-3">
+            <div class="card w-100 d-flex flex-row py-3 pe-3">
               <figure>
                 <img class="w-100 h-100 object-fit-cover" src="/public/placeholder.png" alt=""/>
               </figure>
@@ -191,12 +191,16 @@ main {
     text-align: center;
   }
 
+  .btn_return {
+    margin-top: 150px;
+  }
+
   .heroes {
     height: 350px;
     background-color: red;
 
     .details-restaurant {
-      top: 75%;
+      top: 50%;
     }
   }
 
@@ -208,10 +212,22 @@ main {
     }
   }
 
-  figure {
-    width: 300px;
-    height: 300px;
+  .card {
+    height: 280px;
+
+    figure {
+    width: 40%;
+    height: 100%;
     overflow: hidden;
+    }
+    .content-details {
+    width: 60%;
+    height: 100%;
+    }
   }
+
+
+
+  
 }
 </style>
