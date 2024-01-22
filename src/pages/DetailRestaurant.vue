@@ -178,7 +178,7 @@ export default {
               <div class="debug-m">ciao</div> -->
 
                 <figure class="m-0 product-image">
-                  <img class="w-100 h-100 object-fit-cover" src="/public/placeholder.png" alt=""/>
+                  <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
                 </figure>
 
                 <div class="product-details ps-3">
