@@ -3,6 +3,7 @@ import Cart from "./pages/Cart.vue";
 import Home from "./pages/Home.vue";
 import Payment from "./pages/Payment.vue";
 import DetailRestaurant from "./pages/DetailRestaurant.vue";
+import PostPayment from "./pages/PostPayment.vue";
 
 const router =  createRouter ({
   history:createWebHistory(),
@@ -27,6 +28,11 @@ const router =  createRouter ({
       path:"/payment",
       name:"payment",
       component: Payment
+    },
+    {
+      path:"/postpayment",
+      name:"postpayment",
+      component: PostPayment
     }
   ]
 });
