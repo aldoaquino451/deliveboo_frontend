@@ -23,7 +23,6 @@ export default {
     }
   },
 
-
   computed:{
     totalAmount() {
       return store.cart.reduce((total, cartItem) => {
@@ -33,6 +32,8 @@ export default {
   },
 
   methods: {
+
+    // VALIDAZIONI
     isValidName() {
       return /^[a-zA-Z]{2,}$/.test(this.form.nome);
     },
@@ -68,6 +69,8 @@ export default {
     isValidCVV() {
       return /^[0-9]{3,4}$/.test(this.form.cvv);
     },
+
+    // PAGAMENTO
     processPayment() {
       this.validationErrors = {}; // Reset degli errori prima di validare!!!!
 
@@ -112,28 +115,35 @@ export default {
         localStorage.setItem('customerSurname', this.form.cognome);
         localStorage.setItem('customerAddress', this.form.indirizzo);
         localStorage.setItem('customerNumber', this.form.telefono);
+        
+        this.$router.push({ name: 'postpayment' });
 
-        console.log('Carrello:', JSON.stringify(this.store.cart));
-        console.log('customerName:', localStorage.getItem('customerName'));
-        console.log('customerSurname:', localStorage.getItem('customerSurname'));
-        console.log('customerAddress:', localStorage.getItem('customerAddress'));
-        console.log('customerNumber:', localStorage.getItem('customerNumber'));
-        console.log('Totale carrello:', this.totalAmount.toFixed(2));
-
+        const cart = JSON.stringify(this.store.cart);
         const name = localStorage.getItem('customerName');
         const lastname = localStorage.getItem('customerSurname');
         const address = localStorage.getItem('customerAddress');
-        const number = localStorage.getItem('customerNumber');
-        const totalcart = this.totalAmount.toFixed(2);
-
-        axios.get(store.apiUrl + "save-order/" + name + "/" + lastname + "/" + address + "/" + number + "/" + totalcart + "/" )
-        .then
-
-        this.$router.push({ name: 'postpayment' });
-      } else {
+        const phone_number = localStorage.getItem('customerNumber');
+        const total_price = this.totalAmount.toFixed(2);
+        
+      } 
+      else {
         console.log('Errore: Dati non validi', this.validationErrors);
       }
     },
+    
+    getApi() {
+      const cart = JSON.stringify(this.store.cart);
+      const name = 'admin';
+      const lastname = 'admin';
+      const address = 'vai qualunque 11';
+      const phone_number = '3442344343';
+      const total_price  = this.totalAmount.toFixed(2);
+
+      axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + phone_number + '/' + total_price)
+        .then(res => {
+          console.log(res.data);
+        });
+    }
   },
 };
 </script>
@@ -221,7 +231,12 @@ export default {
                 <button class="btn btn-primary btn-lg btn-block" @click.prevent="processPayment">
                   Continue to checkout
                 </button>
+
               </form>
+
+                <button class="btn btn-primary btn-lg btn-block" @click="getApi">
+                  chiamata api
+                </button>
             </div>
           </div>
         </div>
@@ -260,7 +275,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  section {
-    text-align: center;
-  }
+
+section {
+  text-align: center;
+}
 </style>
