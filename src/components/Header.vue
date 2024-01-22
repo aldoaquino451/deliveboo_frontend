@@ -84,8 +84,8 @@ header {
       background-color: red;
       color: white;
       position: absolute;
-      top: 8px;
-      left: 0;
+      top: -12px;
+      right: 7px;
     }
   }
 
