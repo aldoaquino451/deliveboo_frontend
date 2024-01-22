@@ -84,7 +84,7 @@ export default {
     <!-- immagine del ristorante -->
     <img
       class="w-100 h-100 object-fit-cover"
-      src="/public/ristorante.jpg"
+      :src="restaurant?.image"
       alt=""
     />
 
@@ -212,7 +212,6 @@ h1 {
 
 .heroes {
   height: 350px;
-  background-color: red;
   .title-restaurant {
   position: absolute;
   bottom: -125px;
