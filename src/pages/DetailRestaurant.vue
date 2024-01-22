@@ -66,6 +66,12 @@ export default {
     },
   },
 
+  computed: {
+    filteredProducts() {
+      return (category) => this.products.filter(product => product.category_id === category.id);
+    }
+  },
+
   mounted() {
     this.getRestaurant(this.$route.params.slug);
   },
@@ -121,7 +127,6 @@ export default {
   <div class="container pt-5">
 
     <div class="d-flex justify-content-center mt-5">
-      <!-- PROVA -->
       <div class="row pt-5">
         <div
           class="col category-menu text-center"
@@ -152,47 +157,45 @@ export default {
           <p class="text-uppercase">{{ category.name }}</p>
         </div>
       </div>
-      <!-- FINE PROVA -->
-
-      <!-- <button @click="getRestaurant(restaurant.slug)" type="button" class="btn btn-warning mx-2 text-center">Tutto</button> -->
-
-      <!-- <button @click="getProductsByCategory(restaurant.id, category.id)" v-for="category in categories" :key="category.id" type="button" class="btn btn-warning mx-2 text-center">{{category.name}}</button> -->
     </div>
 
-    <div class="my-products my-5" v-for="category in categories" :key="category.id">
-      <div v-if="this.products.some((product) => product.category_id === category.id)">
+
+    <!-- STAMPA PRODOTTI -->
+    <div class="container-fluid my-products my-5" v-for="category in categories" :key="category.id">
+      <div v-if="filteredProducts(category).length > 0">
 
         <h2 class="text-success">
           {{ category.name }}
         </h2>
         
-        <div class="row my-5">
-          <div v-for="product in products" :key="product.id" class="col-6 mb-4">
-            <div class="card h-100 d-flex flex-row py-3 pe-3">
+        <div class="row">
 
-            <!-- <div class="debug-s">ciao</div>
+          <div class="col-6 mb-4" v-for="product in filteredProducts(category)" :key="product.id">
+              <div class="card h-100 d-flex flex-row py-3">
 
-            <div class="debug-m">ciao</div> -->
+              <!-- <div class="debug-s">ciao</div>
 
-              <figure class="m-0 product-image">
-                <img class="w-100 h-100 object-fit-cover" src="/public/placeholder.png" alt=""/>
-              </figure>
+              <div class="debug-m">ciao</div> -->
 
-              <div class="product-details ps-3">
-                <h4>{{ product.name }}</h4>
-                <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
-                <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
-                <p v-if="product.is_vegan">prodotto vegano</p>
-                <div>
-                  <button class="btn btn-success" @click="addToCart(product)">+</button>
-                  <span v-if="getQuantityInCart(product) > 0">
-                    <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
-                    <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
-                  </span>
+                <figure class="m-0 product-image">
+                  <img class="w-100 h-100 object-fit-cover" src="/public/placeholder.png" alt=""/>
+                </figure>
+
+                <div class="product-details ps-3">
+                  <h4>{{ product.name }}</h4>
+                  <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
+                  <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
+                  <p v-if="product.is_vegan">prodotto vegano</p>
+                  <div>
+                    <button class="btn btn-success" @click="addToCart(product)">+</button>
+                    <span v-if="getQuantityInCart(product) > 0">
+                      <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
+                      <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-            </div>
+              </div>
           </div>
         </div>
 
