@@ -24,10 +24,10 @@ export default{
 <template>
 
   <header class="py-3">
-    <div class="container h-100 d-flex justify-content-between">
+    <div class="container h-100 d-flex justify-content-between ">
 
       <!-- immagine del logo che porta alla home -->
-      <div>
+      <div class="h-100">
         <router-link to="/">
           <img class="h-100" src="/logoristo.png" alt="logoristo">
         </router-link>

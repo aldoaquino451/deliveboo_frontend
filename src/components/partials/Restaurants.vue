@@ -22,6 +22,8 @@ export default{
 <template>
   <div class="container py-4">
 
+    <p v-if="store.restaurants.length != 0" class="text-center">Risultati della ricerca: {{ store.restaurants.length }}</p>
+
     <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
       <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/>
     </div>
