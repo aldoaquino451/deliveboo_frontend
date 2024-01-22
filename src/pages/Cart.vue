@@ -7,6 +7,7 @@ export default {
   computed: {
     cart() {
       return store.cart;
+      
     },
 
     totalAmount() {
@@ -29,8 +30,10 @@ export default {
         removeFromCart(cartItem.product.id);
       }
       store.saveCart(store.cart);
+
     },
   },
+
 };
 </script>
 

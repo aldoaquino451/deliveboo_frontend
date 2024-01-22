@@ -34,6 +34,7 @@ export default {
           if (!isCategoryAlreadyAdded) {
             this.categories.push(category);
           }
+         
         });
       });
     },
