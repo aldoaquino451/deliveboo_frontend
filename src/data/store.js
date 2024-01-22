@@ -17,6 +17,8 @@ export const store = reactive({
   typologies: [],
   searchTypologies: [],
   cart: loadCart(),
+  cartPrint: [],
+  totalAmountPrint: []
 });
 
 // Aggiungo al carrello
@@ -32,6 +34,7 @@ export function addToCart(product) {
       store.cart.push({ product, quantity: 1 });
     } else {
       console.log("non puoi ordinare su ristoranti diversi");
+      window.alert("Non puoi ordinare su ristoranti diversi");
     }
   }
   

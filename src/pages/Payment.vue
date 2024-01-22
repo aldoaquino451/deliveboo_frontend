@@ -23,6 +23,18 @@ export default {
     }
   },
 
+  mounted(){
+    this.store.cart.forEach(product => {
+    this.store.cartPrint.push({
+      name: product["product"]["name"],
+      quantity: product["quantity"],
+      price: product["product"]["price"]
+      });
+      });
+    console.log(this.store.cartPrint);
+    this.store.totalAmountPrint = this.totalAmount.toFixed(2)
+  },
+
   computed:{
     totalAmount() {
       return store.cart.reduce((total, cartItem) => {
@@ -125,6 +137,7 @@ export default {
         const phone_number = localStorage.getItem('customerNumber');
         const total_price = this.totalAmount.toFixed(2);
         
+        this.store.cart = [];
       } 
       else {
         console.log('Errore: Dati non validi', this.validationErrors);
