@@ -18,9 +18,7 @@ export default {
 
 <template>
 
-  <div>{{ restaurant }}</div>
   <div class="col mb-4">
-
     <router-link :to="{ name: 'detailRestaurant', params: {slug: restaurant.slug} }">
       <div class="card">
         <div class="card-body d-flex flex-column">
