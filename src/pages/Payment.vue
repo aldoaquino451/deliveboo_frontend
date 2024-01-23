@@ -219,9 +219,9 @@ export default {
                 
                 <!-- Text email -->
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="form6Example4">Email</label>
-                  <input type="email" id="form6Example4" v-model="form.email" class="form-control" />
-                  <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.email }}</span>
+                  <label class="form-label" for="form6Example5">Email</label>
+                  <input type="email" id="form6Example5" v-model="form.email" class="form-control" />
+                  <span v-if="validationErrors.email" class="text-danger">{{ validationErrors.email }}</span>
                 </div>
 
                 <!-- Numero input -->
