@@ -188,7 +188,7 @@ export default {
                 <h4>{{ product.name }}</h4>
                 <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
                 <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
-                <p v-if="product.is_vegan">prodotto vegano</p>
+                <p class="text-success" v-if="product.is_vegan">Prodotto vegano</p>
                 <div>
                   <button class="btn btn-success" @click="addToCart(product)">+</button>
                   
