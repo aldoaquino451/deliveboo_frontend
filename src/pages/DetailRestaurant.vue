@@ -39,6 +39,7 @@ export default {
           }
         });
       });
+      store.searchTypologies = [];
     },
 
     addToCart(product) {
@@ -70,6 +71,8 @@ export default {
           });
           this.products = visibleProducts;
         });
+        store.searchTypologies = [];
+
     },
   },
 
