@@ -13,6 +13,7 @@ export default {
         nome: '',
         cognome: '',
         indirizzo: '',
+        email: '',
         telefono: '',
         titolareCarta: '',
         numeroCarta: '',
@@ -54,6 +55,9 @@ export default {
     },
     isValidAddress() {
       return /^[a-zA-Z0-9 ]{5,}$/.test(this.form.indirizzo);
+    },
+    isValidEmail() {
+      return /^[\w.-]+@[a-zA-Z\d.-]+.[a-zA-Z]{2,}$/.test(this.form.email);
     },
     isValidPhone() {
       return /^[0-9]{5,}$/.test(this.form.telefono);
@@ -98,6 +102,10 @@ export default {
         this.validationErrors.indirizzo = 'Indirizzo non valido';
       }
 
+      if (!this.isValidEmail()) {
+        this.validationErrors.email = 'Email non valida';
+      }
+
       if (!this.isValidPhone()) {
         this.validationErrors.telefono = 'Telefono non valido';
       }
@@ -126,6 +134,7 @@ export default {
         localStorage.setItem('customerName', this.form.nome);
         localStorage.setItem('customerSurname', this.form.cognome);
         localStorage.setItem('customerAddress', this.form.indirizzo);
+        localStorage.setItem('customerEmail', this.form.email);
         localStorage.setItem('customerNumber', this.form.telefono);
         
         this.$router.push({ name: 'postpayment' });
@@ -134,8 +143,14 @@ export default {
         const name = localStorage.getItem('customerName');
         const lastname = localStorage.getItem('customerSurname');
         const address = localStorage.getItem('customerAddress');
+        const email = localStorage.getItem('customerEmail');
         const phone_number = localStorage.getItem('customerNumber');
         const total_price = this.totalAmount.toFixed(2);
+
+        axios.get(store.apiUrl + "save-order/" + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price)
+          .then(res => {
+            console.log(res.data);
+          });
         
         this.store.cart = [];
       } 
@@ -144,19 +159,19 @@ export default {
       }
     },
     
-    getApi() {
-      const cart = JSON.stringify(this.store.cart);
-      const name = 'admin';
-      const lastname = 'admin';
-      const address = 'vai qualunque 11';
-      const phone_number = '3442344343';
-      const total_price  = this.totalAmount.toFixed(2);
+    // getApi() {
+    //   const cart = JSON.stringify(this.store.cart);
+    //   const name = 'admin';
+    //   const lastname = 'admin';
+    //   const address = 'vai qualunque 11';
+    //   const phone_number = '3442344343';
+    //   const total_price  = this.totalAmount.toFixed(2);
 
-      axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + phone_number + '/' + total_price)
-        .then(res => {
-          console.log(res.data);
-        });
-    }
+    //   axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + phone_number + '/' + total_price)
+    //     .then(res => {
+    //       console.log(res.data);
+    //     });
+    // }
   },
 };
 </script>
@@ -196,6 +211,13 @@ export default {
                   <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.indirizzo }}</span>
                 </div>
 
+                <!-- Text email -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="form6Example4" v-model="form.email" class="form-control" />
+                  <label class="form-label" for="form6Example4">Email</label>
+                  <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.email }}</span>
+                </div>
+
                 <!-- Numero input -->
                 <div class="form-outline mb-4">
                   <input type="number" id="form6Example6" v-model="form.telefono" class="form-control" />
@@ -217,8 +239,8 @@ export default {
                   </div>
                   <div class="col">
                     <div class="form-outline">
-                      <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" />
-                      <label class="form-label" for="formCardNumber">Numero carta</label>
+                      <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" maxlength="19" />
+                      <label class="form-label" for="formCardNumber" >Numero carta</label>
                       <span v-if="validationErrors.numeroCarta" class="text-danger">{{ validationErrors.numeroCarta }}</span>
                     </div>
                   </div>
@@ -234,7 +256,7 @@ export default {
                   </div>
                   <div class="col-3">
                     <div class="form-outline">
-                      <input type="text" id="formCVV" v-model="form.cvv" class="form-control" />
+                      <input type="text" id="formCVV" v-model="form.cvv" class="form-control" maxlength="4"/>
                       <label class="form-label" for="formCVV">CVV</label>
                       <span v-if="validationErrors.cvv" class="text-danger">{{ validationErrors.cvv }}</span>
                     </div>
@@ -246,10 +268,6 @@ export default {
                 </button>
 
               </form>
-
-                <button class="btn btn-primary btn-lg btn-block" @click="getApi">
-                  chiamata api
-                </button>
             </div>
           </div>
         </div>
