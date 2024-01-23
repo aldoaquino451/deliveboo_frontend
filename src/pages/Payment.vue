@@ -151,7 +151,7 @@ export default {
           .then(res => {
             console.log(res.data);
           });
-        
+        localStorage.removeItem('cart');
         this.store.cart = [];
       } 
       else {
@@ -183,22 +183,24 @@ export default {
         <div class="col-md-8 mb-4">
           <div class="card mb-4">
             <div class="card-header py-3">
-              <h5 class="mb-0">Dati utente</h5>
+              <h5 class="mb-0">Pagamento</h5>
             </div>
             <div class="card-body">
               <form class="mb-3">
                 <div class="row mb-4">
+                  <h5 class="mb-4">Dati utente</h5>
                   <div class="col">
                     <div class="form-outline">
-                      <input type="text" id="form6Example1" v-model="form.nome" class="form-control" />
                       <label class="form-label" for="form6Example1">Nome</label>
+                      <input type="text" id="form6Example1" v-model="form.nome" class="form-control" />
+                    
                       <span v-if="validationErrors.nome" class="text-danger">{{ validationErrors.nome }}</span>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-outline">
-                      <input type="text" id="form6Example2" v-model="form.cognome" class="form-control" />
                       <label class="form-label" for="form6Example2">Cognome</label>
+                      <input type="text" id="form6Example2" v-model="form.cognome" class="form-control" />
                       <span v-if="validationErrors.cognome" class="text-danger">{{ validationErrors.cognome }}</span>
                     </div>
                   </div>
@@ -206,41 +208,42 @@ export default {
 
                 <!-- Text input -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="form6Example4" v-model="form.indirizzo" class="form-control" />
                   <label class="form-label" for="form6Example4">Indirizzo di consegna</label>
+                  <input type="text" id="form6Example4" v-model="form.indirizzo" class="form-control" />
                   <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.indirizzo }}</span>
                 </div>
-
+                
                 <!-- Text email -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="form6Example4" v-model="form.email" class="form-control" />
                   <label class="form-label" for="form6Example4">Email</label>
+                  <input type="email" id="form6Example4" v-model="form.email" class="form-control" />
                   <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.email }}</span>
                 </div>
 
                 <!-- Numero input -->
-                <div class="form-outline mb-4">
-                  <input type="number" id="form6Example6" v-model="form.telefono" class="form-control" />
+                <div class="form-outline mb-5">
                   <label class="form-label" for="form6Example6">Telefono</label>
+                  <input type="number" id="form6Example6" v-model="form.telefono" class="form-control" />
                   <span v-if="validationErrors.telefono" class="text-danger">{{ validationErrors.telefono }}</span>
                 </div>
 
-                <hr class="my-4" />
+                
+               
 
-                <h5 class="mb-4">Pagamento</h5>
-
+                <h5 class="mb-4 mt-5">Dati carta</h5>
+                
                 <div class="row mb-4">
                   <div class="col">
                     <div class="form-outline">
-                      <input type="text" id="formNameOnCard" v-model="form.titolareCarta" class="form-control" />
                       <label class="form-label" for="formNameOnCard">Titolare della carta</label>
+                      <input type="text" id="formNameOnCard" v-model="form.titolareCarta" class="form-control" />
                       <span v-if="validationErrors.titolareCarta" class="text-danger">{{ validationErrors.titolareCarta }}</span>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-outline">
-                      <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" maxlength="19" />
                       <label class="form-label" for="formCardNumber" >Numero carta</label>
+                      <input type="text" id="formCardNumber" v-model="form.numeroCarta" class="form-control" maxlength="19" />
                       <span v-if="validationErrors.numeroCarta" class="text-danger">{{ validationErrors.numeroCarta }}</span>
                     </div>
                   </div>
@@ -249,22 +252,22 @@ export default {
                 <div class="row mb-4">
                   <div class="col-3">
                     <div class="form-outline">
-                      <input type="text" id="formExpiration" v-model="form.scadenza" class="form-control" />
                       <label class="form-label" for="formExpiration">Scadenza</label>
+                      <input type="text" id="formExpiration" v-model="form.scadenza" class="form-control" />
                       <span v-if="validationErrors.scadenza" class="text-danger">{{ validationErrors.scadenza }}</span>
                     </div>
                   </div>
                   <div class="col-3">
                     <div class="form-outline">
-                      <input type="text" id="formCVV" v-model="form.cvv" class="form-control" maxlength="4"/>
                       <label class="form-label" for="formCVV">CVV</label>
+                      <input type="text" id="formCVV" v-model="form.cvv" class="form-control" maxlength="4"/>
                       <span v-if="validationErrors.cvv" class="text-danger">{{ validationErrors.cvv }}</span>
                     </div>
                   </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block" @click.prevent="processPayment">
-                  Continue to checkout
+                <button class="btn btn-primary btn-lg btn-block mt-4" @click.prevent="processPayment">
+                  Procedi al pagamento
                 </button>
 
               </form>
@@ -307,7 +310,5 @@ export default {
 
 <style lang="scss" scoped>
 
-section {
-  text-align: center;
-}
+
 </style>

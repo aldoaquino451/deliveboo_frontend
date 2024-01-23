@@ -30,6 +30,11 @@ export default {
       }
       store.saveCart(store.cart);
     },
+
+    clearLocalStorage (){
+      store.cart = [];
+      localStorage.removeItem('cart');
+    }
   },
 };
 </script>
@@ -59,12 +64,19 @@ export default {
         </div>
       </li>
     </ol>
+    <div v-if="cart.length > 0">
+      <p class=" text-end mb-3">Totale: &euro;{{ totalAmount.toFixed(2) }}</p>
 
-    <div class="d-flex justify-content-end">
-      <router-link to="/payment">
-        <button type="button" class="btn btn-success px-3">Totale: &euro;{{ totalAmount.toFixed(2) }}</button>
-      </router-link>
+      <div class="d-flex justify-content-end">
+        <button @click="clearLocalStorage()" class="btn btn-secondary me-2">Svuota</button>
+        <router-link to="/payment">
+          <button type="button" class="btn btn-success px-3">Procedi all'ordine</button>
+        </router-link>
+      </div>
+
     </div>
+    <p v-else class="text-center fs-4">Nel carrello non sono presenti prodotti</p>
+   
 
   </section>
 </template>
