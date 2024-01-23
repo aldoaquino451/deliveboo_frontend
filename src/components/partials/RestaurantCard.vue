@@ -12,11 +12,13 @@ export default {
   props: {
     restaurant: Object
   },
-  
+ 
 }
 </script>
 
 <template>
+
+  <div>{{ restaurant }}</div>
   <div class="col mb-4">
 
     <router-link :to="{ name: 'detailRestaurant', params: {slug: restaurant.slug} }">

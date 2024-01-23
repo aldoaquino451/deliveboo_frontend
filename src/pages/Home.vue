@@ -46,7 +46,7 @@ export default{
         axios.get(store.apiUrl + 'restaurants-by-typologies/' + store.searchTypologies.join("-"))
         .then(results => {
           // this.isLoaded = true;
-          store.restaurants = results.data;
+          store.restaurants = results.data.data;
         })
       }
     }
