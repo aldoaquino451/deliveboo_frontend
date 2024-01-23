@@ -30,7 +30,8 @@ computed:{
 
 <template>
   <section>
-    <div class="container d-flex flex-column align-items-center">
+
+    <div v-if="store.cartPrint.length > 0" class="container d-flex flex-column align-items-center">
       <div class="mb-4 text-center">
         <h2>Grazie {{ customerName }}!</h2>
         <h5>il tuo ordine è stato confermato!</h5>
@@ -66,7 +67,13 @@ computed:{
           </div>
         </div>
       </div>
-    </div>   
+    </div>  
+
+    <div class="my-4 text-center">
+      <router-link :to="{name:'home'}">
+        <button class="btn btn-primary">Home</button>
+      </router-link>
+    </div> 
 
   </section> 
 

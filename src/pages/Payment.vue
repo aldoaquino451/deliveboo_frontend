@@ -26,14 +26,17 @@ export default {
 
   mounted(){
     this.store.cart.forEach(product => {
-    this.store.cartPrint.push({
-      name: product["product"]["name"],
-      quantity: product["quantity"],
-      price: product["product"]["price"]
+      this.store.cartPrint.push({
+        id: product["product"]["id"],
+        name: product["product"]["name"],
+        quantity: product["quantity"],
+        price: product["product"]["price"]
       });
-      });
-    console.log(this.store.cartPrint);
-    this.store.totalAmountPrint = this.totalAmount.toFixed(2)
+    });
+
+    console.log(JSON.stringify(this.store.cartPrint));
+
+    this.store.totalAmountPrint = this.totalAmount.toFixed(2);
   },
 
   computed:{
@@ -139,7 +142,7 @@ export default {
         
         this.$router.push({ name: 'postpayment' });
 
-        const cart = JSON.stringify(this.store.cart);
+        const cart = JSON.stringify(this.store.cartPrint);
         const name = localStorage.getItem('customerName');
         const lastname = localStorage.getItem('customerSurname');
         const address = localStorage.getItem('customerAddress');
@@ -147,10 +150,11 @@ export default {
         const phone_number = localStorage.getItem('customerNumber');
         const total_price = this.totalAmount.toFixed(2);
 
-        axios.get(store.apiUrl + "save-order/" + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price)
+        axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price)
           .then(res => {
             console.log(res.data);
           });
+
         localStorage.removeItem('cart');
         this.store.cart = [];
       } 
