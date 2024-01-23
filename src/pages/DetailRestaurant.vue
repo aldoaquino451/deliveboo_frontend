@@ -24,7 +24,10 @@ export default {
       axios.get(store.apiUrl + "restaurant/" + slug).then((res) => {
         this.restaurant = res.data;
         this.products = res.data.products;
-
+        const visibleProducts = this.products.filter((product) => {
+          return product.is_visible === 1;
+        });
+        this.products = visibleProducts;
         this.products.forEach((product) => {
           const category = product.category;
           const isCategoryAlreadyAdded = this.categories.some(
@@ -62,6 +65,10 @@ export default {
         )
         .then((res) => {
           this.products = res.data;
+          const visibleProducts = this.products.filter((product) => {
+            return product.is_visible === 1;
+          });
+          this.products = visibleProducts;
         });
     },
   },
@@ -185,7 +192,7 @@ export default {
                   <h4>{{ product.name }}</h4>
                   <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
                   <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
-                  <p v-if="product.is_vegan">prodotto vegano</p>
+                  <p class="text-success" v-if="product.is_vegan">Prodotto vegano</p>
                   <div>
                     <button class="btn btn-success" @click="addToCart(product)">+</button>
                     <span v-if="getQuantityInCart(product) > 0">
