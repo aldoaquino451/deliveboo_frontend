@@ -178,34 +178,30 @@ export default {
         <div class="row">
 
           <div class="col-6 mb-4" v-for="product in filteredProducts(category)" :key="product.id">
-              <div class="card h-100 d-flex flex-row py-3">
 
-              <!-- <div class="debug-s">ciao</div>
+            <div class="card h-100 d-flex flex-row py-3">
+              <figure class="m-0 product-image">
+                <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
+              </figure>
 
-              <div class="debug-m">ciao</div> -->
-
-                <figure class="m-0 product-image">
-                  <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
-                </figure>
-
-                <div class="product-details ps-3">
-                  <h4>{{ product.name }}</h4>
-                  <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
-                  <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
-                  <p class="text-success" v-if="product.is_vegan">Prodotto vegano</p>
-                  <div>
-                    <button class="btn btn-success" @click="addToCart(product)">+</button>
-                    <span v-if="getQuantityInCart(product) > 0">
-                      <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
-                      <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
-                    </span>
-                  </div>
+              <div class="product-details ps-3">
+                <h4>{{ product.name }}</h4>
+                <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
+                <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
+                <p v-if="product.is_vegan">prodotto vegano</p>
+                <div>
+                  <button class="btn btn-success" @click="addToCart(product)">+</button>
+                  
+                  <span v-if="getQuantityInCart(product) > 0">
+                    <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
+                    <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
+                  </span>
+                  
                 </div>
-
               </div>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

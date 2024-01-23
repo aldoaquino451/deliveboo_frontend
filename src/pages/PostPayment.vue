@@ -13,6 +13,10 @@ data(){
   }
 },
 
+mounted(){
+  console.log(this.store.cartPrint);
+},
+
 computed:{
     totalAmount() {
       return store.cart.reduce((total, cartItem) => {
@@ -41,11 +45,11 @@ computed:{
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                <span>{{ cartItem.product.name }}</span>
+              <li v-for="(product, index) in store.cartPrint" :key="index" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                <span>{{ product.name }}</span>
                 <div>
-                  <span>{{ cartItem.product.price }} &euro;</span>
-                  <span> x{{ cartItem.quantity }}</span>
+                  <span>{{ product.price }} &euro;</span>
+                  <span> x{{ product.quantity }}</span>
                 </div>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">
@@ -56,7 +60,7 @@ computed:{
                 <div>
                   <strong>Totale</strong>
                 </div>
-                <span><strong>&euro;{{ totalAmount.toFixed(2) }}</strong></span>
+                <span><strong>&euro;{{ store.totalAmountPrint }}</strong></span>
               </li>
             </ul>
           </div>
