@@ -24,7 +24,10 @@ export default {
       axios.get(store.apiUrl + "restaurant/" + slug).then((res) => {
         this.restaurant = res.data;
         this.products = res.data.products;
-
+        const visibleProducts = this.products.filter((product) => {
+          return product.is_visible === 1;
+        });
+        this.products = visibleProducts;
         this.products.forEach((product) => {
           const category = product.category;
           const isCategoryAlreadyAdded = this.categories.some(
@@ -62,6 +65,10 @@ export default {
         )
         .then((res) => {
           this.products = res.data;
+          const visibleProducts = this.products.filter((product) => {
+            return product.is_visible === 1;
+          });
+          this.products = visibleProducts;
         });
     },
   },
@@ -171,6 +178,7 @@ export default {
         <div class="row">
 
           <div class="col-6 mb-4" v-for="product in filteredProducts(category)" :key="product.id">
+
             <div class="card h-100 d-flex flex-row py-3">
               <figure class="m-0 product-image">
                 <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
@@ -188,6 +196,7 @@ export default {
                     <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
                     <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
                   </span>
+                  
                 </div>
               </div>
             </div>
