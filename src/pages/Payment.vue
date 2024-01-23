@@ -30,11 +30,13 @@ export default {
         id: product["product"]["id"],
         name: product["product"]["name"],
         quantity: product["quantity"],
-        price: product["product"]["price"]
+        price: product["product"]["price"],
       });
+      store.restaurant_id = product["product"]["restaurant_id"]; 
     });
 
-    console.log(JSON.stringify(this.store.cartPrint));
+    console.log(this.store.cartPrint);
+    console.log(this.store.cart);
 
     this.store.totalAmountPrint = this.totalAmount.toFixed(2);
   },
@@ -149,8 +151,9 @@ export default {
         const email = localStorage.getItem('customerEmail');
         const phone_number = localStorage.getItem('customerNumber');
         const total_price = this.totalAmount.toFixed(2);
+        const restaurant_id = store.restaurant_id;
 
-        axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price)
+        axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price + '/' + restaurant_id)
           .then(res => {
             console.log(res.data);
           });
@@ -219,9 +222,9 @@ export default {
                 
                 <!-- Text email -->
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="form6Example4">Email</label>
-                  <input type="email" id="form6Example4" v-model="form.email" class="form-control" />
-                  <span v-if="validationErrors.indirizzo" class="text-danger">{{ validationErrors.email }}</span>
+                  <label class="form-label" for="form6Example5">Email</label>
+                  <input type="email" id="form6Example5" v-model="form.email" class="form-control" />
+                  <span v-if="validationErrors.email" class="text-danger">{{ validationErrors.email }}</span>
                 </div>
 
                 <!-- Numero input -->
