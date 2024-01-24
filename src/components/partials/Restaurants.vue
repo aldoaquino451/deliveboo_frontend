@@ -30,6 +30,10 @@ export default{
       
     <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
 
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+
   </div>
 </template>
 
