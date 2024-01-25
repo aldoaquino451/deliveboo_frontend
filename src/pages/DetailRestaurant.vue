@@ -12,6 +12,7 @@ export default {
 
   data() {
     return {
+      store,
       restaurant: {},
       categories: [],
       products: [],
@@ -20,6 +21,11 @@ export default {
   },
 
   methods: {
+
+    closePopup() {
+      store.isPopupVisible = false;
+    },
+    
     getRestaurant(slug) {
       axios.get(store.apiUrl + "restaurant/" + slug).then((res) => {
         this.restaurant = res.data;
@@ -89,6 +95,13 @@ export default {
 </script>
 
 <template>
+
+  <div v-if="store.isPopupVisible" class="custom-popup">
+    <div class="popup-content">
+      <p>Stai già ordinando da un altro ristorante</p>
+      <button @click="closePopup">OK</button>
+    </div>
+  </div>
 
   <div class="position-relative heroes w-100">
     <!-- immagine del ristorante -->

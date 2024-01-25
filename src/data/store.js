@@ -33,8 +33,7 @@ export function addToCart(product) {
     } else if (store.cart[0].product.restaurant_id === product.restaurant_id){
       store.cart.push({ product, quantity: 1 });
     } else {
-      console.log("non puoi ordinare su ristoranti diversi");
-      window.alert("Non puoi ordinare su ristoranti diversi");
+      store.isPopupVisible= true;
     }
   }
   
