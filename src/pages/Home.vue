@@ -19,6 +19,7 @@ export default{
     return {
       store,
       links: [],
+      restaurantTotal: 0,
     }
   },
 
@@ -36,6 +37,7 @@ export default{
       axios.get(store.apiUrl + endpoint)
         .then( res => {
           store.restaurants = res.data;
+          this.restaurantTotal = 0;
         })
     },
     
@@ -49,6 +51,7 @@ export default{
         axios.get(store.apiUrl + 'restaurants-by-typologies/' + store.searchTypologies.join("-"))
           .then( res => {
             store.restaurants = res.data.data;
+            this.restaurantTotal = res.data.total;
             this.links = res.data.links;
           })
       }
@@ -67,6 +70,7 @@ export default{
   mounted(){
     this.getTypologies('typologies');
     this.getRestaurants('restaurants');
+    store.searchTypologies = [];
   }
 
 }
@@ -80,7 +84,7 @@ export default{
   <!-- stampo i ristoranti con all'interno le Restaurant Card e il Paginator -->
   <div class="container py-4">
 
-    <p v-if="store.restaurants.length != 0" class="text-center">Risultati della ricerca: {{ store.restaurants.length }}</p>
+    <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
     <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
       <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
@@ -88,7 +92,7 @@ export default{
       
     <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
 
-    <Paginator :links="links" @getPage="getPage"/>
+    <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
 
   </div>
 
