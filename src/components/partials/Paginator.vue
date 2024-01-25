@@ -1,36 +1,32 @@
 <script>
-  export default{
 
-    name: 'Paginator',
+export default{
+  name: 'Paginator',
 
-    data(){
-      return{}
-    },
-    
-    props:{
-      links: Array
-    },
+  props:{
+    links: Array
+  },
 
-    methods: {
-      callApi(linkUrl){
-        this.$emit('callApi', linkUrl);
-      }
-    }
-  }
-
+}
 </script>
 
+
 <template>
-  <div class="container">
+
+  <div v-if="links.length > 3" class="container"> 
     <button
-    v-for="link in links"
-    :key="link.label"
-    v-html="link.label"
-    :disabled="link.active || !link.url"
-    @click="callApi(link.url)"
+      v-for="(link, index) in links"
+      @click="$emit('getPage', link.url)"
+      :key="index"
+      :disabled="link.active || !link.url"
+      v-html="link.label"
+      class="btn btn-outline-primary"
     ></button>
   </div>
+
 </template>
 
-<style>
+
+<style lang="scss">
+
 </style>
