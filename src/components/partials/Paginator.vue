@@ -13,7 +13,7 @@ export default{
 
 <template>
 
-  <div v-if="links.length > 3" class="container"> 
+  <div class="container"> 
     <button
       v-for="(link, index) in links"
       @click="$emit('getPage', link.url)"
