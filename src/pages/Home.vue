@@ -3,18 +3,22 @@ import axios from 'axios';
 import { store } from '../data/store'; 
 import Typologies from '../components/partials/Typologies.vue';
 import Restaurants from '../components/partials/Restaurants.vue'; 
+import Paginator from '../components/partials/Paginator.vue'
 
 export default{
 
   name: 'Home',
+
   components:{
     Typologies,
     Restaurants,
+    Paginator,
   },
 
   data() {
     return {
-      store
+      store,
+      links: []
     }
   },
 
@@ -47,11 +51,10 @@ export default{
         .then(results => {
           // this.isLoaded = true;
           store.restaurants = results.data.data;
+          this.links = results.data.links;
         })
       }
-    }
-
- 
+    },    
   },
 
   mounted(){
@@ -65,8 +68,11 @@ export default{
 <template>
 
   <Typologies @startSearch="getApiRestaurantByTypologies" />
-  
   <Restaurants />
+  <Paginator
+    :links="links"
+    @callApi="getApiRestaurantByTypologies"
+   />
 
 </template>
 
