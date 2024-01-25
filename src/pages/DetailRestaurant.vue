@@ -103,29 +103,27 @@ export default {
     </div>
   </div>
 
-  <div class="position-relative heroes w-100">
-    <!-- immagine del ristorante -->
+  <!-- Stampo l'immagine del ristorante e posiziono in absolute la sezione delle info e il botton per tornare indietro  -->
+  <div id="heroes" class="position-relative w-100">
     <img
       class="w-100 h-100 object-fit-cover"
       :src="restaurant?.image"
       alt=""
     />
 
-    <!-- titolo ristorante + bottone return -->
-    <div class="w-100 title-restaurant">
+    <div class="w-100 restaurant-info">
       <div class="container">
         <div class="row">
 
-          <div class="col-2 d-flex justify-content-center align-items-center">
-            <router-link class="btn btn-primary my-3" :to="{ name: 'home' }"
+          <div class="col-2 d-flex justify-content-center align-items-end">
+            <router-link class="btn btn-primary btn-return" :to="{ name: 'home' }"
               >Torna
             </router-link>
           </div>
 
           <div class="col-8">
             <div class="details-restaurant card w-100 p-3">
-              <h1>{{ restaurant.name_restaurant }}</h1>
-
+              <h1 class="text-center">{{ restaurant.name_restaurant }}</h1>
               <div class="d-flex">
                 <span class="fw-bold">Tipologia: </span>
                 <span
@@ -147,106 +145,110 @@ export default {
   </div>
 
 
-  <div class="container pt-5">
+  <!-- Stampo le categorie del ristorante -->
+  <div id="catagories" class="container">
+    <div class="d-flex justify-content-center">
+      <div class="row">
 
-    <div class="d-flex justify-content-center mt-5">
-      <div class="row pt-5">
         <div
-          class="col category-menu text-center"
-          @click="getRestaurant(restaurant.slug)"
-        >
+          class="col menu text-center"
+          @click="getRestaurant(restaurant.slug)">
           <img
             class="rounded-circle object-fit-cover"
-            width="80"
-            height="80"
             src="/public/pizza.jpg"
-            alt=""
-          />
-          <p>MENU COMPLET0</p>
+            alt=""/>
+          <p class="text-uppercase m-0 mt-2">menu completo</p>
         </div>
+
         <div
-          class="col category-menu text-center"
+          class="col menu text-center"
           @click="getProductsByCategory(restaurant.id, category.id)"
           v-for="category in categories"
-          :key="category.id"
-        >
+          :key="category.id">
           <img
             class="rounded-circle object-fit-cover"
-            width="80"
-            height="80"
             src="/public/pizza.jpg"
-            alt=""
-          />
-          <p class="text-uppercase">{{ category.name }}</p>
+            alt=""/>
+          <p class="text-uppercase m-0 mt-2">{{ category.name }}</p>
         </div>
+
       </div>
     </div>
+  </div>
 
 
-    <!-- STAMPA PRODOTTI -->
-    <div class="container-fluid my-products my-5" v-for="category in categories" :key="category.id">
-      <div v-if="filteredProducts(category).length > 0">
+  <!-- stampo la lista dei prodotti suddivisi per categoria -->
+  <div id="products" class="container my-4" v-for="category in categories" :key="category.id">
+    <div v-if="filteredProducts(category).length > 0">
 
-        <h2 class="text-success">
-          {{ category.name }}
-        </h2>
-        
-        <div class="row">
+      <h2 class="text-success mb-3 fs-2">
+        {{ category.name }}
+      </h2>
+      
+      <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3">
+        <div class="col mb-4" v-for="product in filteredProducts(category)" :key="product.id">
+          <div class="card h-100 d-flex flex-row py-3">
+            <figure class="m-0 product-image">
+              <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
+            </figure>
 
-          <div class="col-6 mb-4" v-for="product in filteredProducts(category)" :key="product.id">
-
-            <div class="card h-100 d-flex flex-row py-3">
-              <figure class="m-0 product-image">
-                <img class="w-100 h-100 object-fit-cover" :src="product?.image" alt=""/>
-              </figure>
-
-              <div class="product-details ps-3">
-                <h4>{{ product.name }}</h4>
-                <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
-                <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
-                <p class="text-success" v-if="product.is_vegan">Prodotto vegano</p>
-                <div>
-                  <button class="btn btn-success" @click="addToCart(product)">+</button>
-                  
-                  <span v-if="getQuantityInCart(product) > 0">
-                    <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
-                    <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
-                  </span>
-                  
-                </div>
+            <div class="product-details ps-3">
+              <h4>{{ product.name }}</h4>
+              <p><span class="fw-bold">Ingredienti:</span>{{ product.ingredients }}</p>
+              <p><span class="fw-bold">Prezzo: </span>€ {{ product.price }}</p>
+              <p class="text-success" v-if="product.is_vegan">Prodotto vegano</p>
+              <div>
+                <button class="btn btn-success" @click="addToCart(product)">+</button>
+                
+                <span v-if="getQuantityInCart(product) > 0">
+                  <span>Quantità nel carrello:{{ getQuantityInCart(product) }}</span>
+                  <button class="btn btn-success" @click="removeFromCart(product.id)">-</button>
+                </span>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
+
 </template>
+
 
 <style lang="scss" scoped>
 
-h1 {
-  text-align: center;
-}
-
-.heroes {
+#heroes {
   height: 350px;
-  .title-restaurant {
-  position: absolute;
-  bottom: -125px;
-}
-}
-
-.category-menu {
-  cursor: pointer;
-  transition: all 0.5s;
-  &:hover {
-    scale: 1.1;
+  .restaurant-info {
+    position: absolute;
+    bottom: -120px;
+  }
+  .btn-return{
+    margin-bottom: 60px;
   }
 }
 
-.my-products {
+#catagories {
+  margin-top: calc(120px + 50px);
+  margin-bottom: 50px;
 
+  img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .menu {
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      scale: 1.1;
+    }
+  }
+}
+
+#products {
   .product-image {
     width: 40%;
     img {
