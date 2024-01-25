@@ -4,6 +4,8 @@ import Home from "./pages/Home.vue";
 import Payment from "./pages/Payment.vue";
 import DetailRestaurant from "./pages/DetailRestaurant.vue";
 import PostPayment from "./pages/PostPayment.vue";
+import PaymentBraintree from "./pages/PaymentBraintree.vue";
+
 
 const router =  createRouter ({
   history:createWebHistory(),
@@ -33,7 +35,12 @@ const router =  createRouter ({
       path:"/postpayment",
       name:"postpayment",
       component: PostPayment
-    }
+    },
+    {
+      path:"/paymentbraintree",
+      name:"paymentbraintree",
+      component: PaymentBraintree
+    },
   ]
 });
 
