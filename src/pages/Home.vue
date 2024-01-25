@@ -70,6 +70,7 @@ export default{
   <Typologies @startSearch="getApiRestaurantByTypologies" />
   <Restaurants />
   <Paginator
+     v-if="store.searchTypologies.length > 0"
     :links="links"
     @callApi="getApiRestaurantByTypologies"
    />
