@@ -21,6 +21,8 @@ export const store = reactive({
 
   cartPrint: [],
   totalAmountPrint: [],
+
+  isPopupVisible: false,
 });
 
 // Salvo il carrello

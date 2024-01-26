@@ -55,18 +55,14 @@ export default {
           });
         });
     },
-
-    closePopup() {
-      store.isPopupVisible = false;
-    },
   },
-
+  
   computed: {
     filteredProducts() {
       return (category) => this.products.filter(product => product.category_id === category.id);
     }
   },
-
+  
   mounted() {
     this.getProducts(this.$route.params.slug);
   },
@@ -75,13 +71,19 @@ export default {
 
 <template>
 
-  <!-- Apro il pop-up che mi avvisa se sto aggiungendo prodotti da un nuovo ristorante -->
-  <div v-if="store.isPopupVisible" class="custom-popup">
-    <div class="popup-content">
-      <p>Stai già ordinando da un altro ristorante</p>
-      <button @click="closePopup">OK</button>
+  <!-- modale per la conferma dello "svuota carrello" -->
+  <div v-if="store.isPopupVisible" id="modal">
+    <div class="modal-content p-4 px-5">
+      <div @click="closePopup" class="close-button d-flex justify-content-end mb-3">
+        <i class="fa-solid fa-circle-xmark fs-4"></i>
+      </div>
+      <p class="text-center">Attenzione! <br> Stai già acquistando da un altro ristorante.<br>Svuota il carrello o porta a termine il pagamento precedente per procedere.</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <button @click="store.isPopupVisible = false" class="btn btn-secondary">OK</button>
+      </div>
     </div>
   </div>
+
 
   <!-- Stampo l'immagine del ristorante e posiziono in absolute la sezione delle info e il botton per tornare indietro  -->
   <div id="heroes" class="position-relative w-100">
@@ -173,6 +175,29 @@ export default {
 
 
 <style lang="scss" scoped>
+
+#modal {
+  position: fixed;
+  z-index: 999;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  .modal-content {
+    width: 450px;
+    margin: 100px auto;
+    border-radius: 20px;
+    background-color: white;
+    .close-button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+    }
+  }
+}
 
 #heroes {
   height: 350px;
