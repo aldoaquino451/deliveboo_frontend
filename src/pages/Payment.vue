@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import { store } from '../data/store';
+import PaymentBraintree from './PaymentBraintree.vue';
 
 export default {
 
@@ -22,6 +23,10 @@ export default {
       },
       validationErrors: {},
     }
+  },
+
+  components: {
+    PaymentBraintree
   },
 
   mounted(){
@@ -237,7 +242,7 @@ export default {
                 
                
 
-                <h5 class="mb-4 mt-5">Dati carta</h5>
+                <!-- <h5 class="mb-4 mt-5">Dati carta</h5>
                 
                 <div class="row mb-4">
                   <div class="col">
@@ -254,9 +259,9 @@ export default {
                       <span v-if="validationErrors.numeroCarta" class="text-danger">{{ validationErrors.numeroCarta }}</span>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                   <div class="col-3">
                     <div class="form-outline">
                       <label class="form-label" for="formExpiration">Scadenza</label>
@@ -271,11 +276,13 @@ export default {
                       <span v-if="validationErrors.cvv" class="text-danger">{{ validationErrors.cvv }}</span>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
-                <button class="btn btn-primary btn-lg btn-block mt-4" @click.prevent="processPayment">
+                <PaymentBraintree @callApi="processPayment"/>
+
+                <!-- <button class="btn btn-primary btn-lg btn-block mt-4" @click.prevent="processPayment">
                   Procedi al pagamento
-                </button>
+                </button> -->
 
               </form>
             </div>
