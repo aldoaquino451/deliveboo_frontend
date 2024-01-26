@@ -75,6 +75,7 @@ export default {
 
 <template>
 
+  <!-- Apro il pop-up che mi avvisa se sto aggiungendo prodotti da un nuovo ristorante -->
   <div v-if="store.isPopupVisible" class="custom-popup">
     <div class="popup-content">
       <p>Stai già ordinando da un altro ristorante</p>
@@ -103,10 +104,9 @@ export default {
           <div class="col-8">
             <div class="details-restaurant card w-100 p-3">
               <h1 class="text-center">{{ restaurant.name_restaurant }}</h1>
-              <div class="d-flex">
-                <span class="fw-bold">Tipologia: </span>
+              <div class="mt-1 d-flex gap-2">
                 <span
-                  class="mx-2"
+                  class="badge bg-success  "
                   v-for="typology in restaurant.typologies"
                   :key="typology.id"
                   >{{ typology.name }}
@@ -126,21 +126,19 @@ export default {
 
   <!-- Stampo le categorie del ristorante -->
   <div id="catagories" class="container">
-    <div class="d-flex justify-content-center">
-      <div class="row">
-
-        <div
-          class="col menu text-center"
+    <div class="d-flex gap-4 justify-content-center">
+        <a href="#products"
+          class=" menu text-center text-decoration-none text-dark"
           @click="getProducts(restaurant.slug)">
           <img
             class="rounded-circle object-fit-cover"
             src="/public/pizza.jpg"
             alt=""/>
-          <p class="text-uppercase m-0 mt-2">menu completo</p>
-        </div>
+          <p class="text-capitalize m-0 mt-2 fs-6">menu completo</p>
+        </a>
 
-        <div
-          class="col menu text-center"
+        <a href="#products"
+          class=" menu text-center text-decoration-none text-dark"
           @click="getProductsByCategory(restaurant.id, category.id)"
           v-for="category in categories"
           :key="category.id">
@@ -148,26 +146,26 @@ export default {
             class="rounded-circle object-fit-cover"
             src="/public/pizza.jpg"
             alt=""/>
-          <p class="text-uppercase m-0 mt-2">{{ category.name }}</p>
-        </div>
-
-      </div>
+          <p class="text-capitalize m-0 mt-2">{{ category.name }}</p>
+        </a>
     </div>
   </div>
 
 
-  <!-- stampo la lista dei prodotti suddivisi per categoria -->
-  <div id="products" class="container my-4" v-for="category in categories" :key="category.id">
-    <div v-if="filteredProducts(category).length > 0">
+  <!-- Stampo la lista dei prodotti suddivisi per categoria -->
+  <div id="products" class="container mb-5">
+    <div v-for="category in categories" :key="category.id">
+      <div v-if="filteredProducts(category).length > 0">
 
-      <h2 class="text-success mb-3 fs-2">
-        {{ category.name }}
-      </h2>
-      
-      <div class="row row-cols-1 row-cols-lg-2">
-        <Product v-for="product in filteredProducts(category)" :product="product" :key="product.id"/>
+        <h2 class="text-success mb-3 fs-2">
+          {{ category.name }}
+        </h2>
+        
+        <div class="row row-cols-1 row-cols-lg-2">
+          <Product v-for="product in filteredProducts(category)" :product="product" :key="product.id"/>
+        </div>
+
       </div>
-
     </div>
   </div>
 
@@ -189,7 +187,6 @@ export default {
 
 #catagories {
   margin-top: calc(120px + 50px);
-  margin-bottom: 50px;
 
   img {
     width: 80px;
@@ -197,12 +194,21 @@ export default {
   }
 
   .menu {
+    img {
+      
+      border: 4px solid white;
+    }
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.3s;
     &:hover {
-      scale: 1.1;
+      scale: 1.2;
     }
   }
+}
+
+#products {
+  padding-top: 80px;
+  padding-bottom: 150px;
 }
 
 </style>
