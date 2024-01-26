@@ -74,10 +74,10 @@ export default {
   <!-- modale per la conferma dello "svuota carrello" -->
   <div v-if="store.isPopupVisible" id="modal">
     <div class="modal-content p-4 px-5">
-      <div @click="closePopup" class="close-button d-flex justify-content-end mb-3">
+      <div @click="store.isPopupVisible = false" class="close-button d-flex justify-content-end mb-3">
         <i class="fa-solid fa-circle-xmark fs-4"></i>
       </div>
-      <p class="text-center">Attenzione! <br> Stai già acquistando da un altro ristorante.<br>Svuota il carrello o porta a termine il pagamento precedente per procedere.</p>
+      <p class="text-center mt-2">Stai già acquistando da un altro ristorante.<br>Svuota il carrello o porta a termine il pagamento precedente per procedere.</p>
       <div class="d-flex gap-3 justify-content-center">
         <button @click="store.isPopupVisible = false" class="btn btn-secondary">OK</button>
       </div>
@@ -186,7 +186,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
 
   .modal-content {
-    width: 450px;
+    width: 400px;
     margin: 100px auto;
     border-radius: 20px;
     background-color: white;
