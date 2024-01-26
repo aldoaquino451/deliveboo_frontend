@@ -26,7 +26,9 @@ export default {
 
       braintree.dropin.create({
         authorization: 'sandbox_7b574dqm_b22n4gtx5t4h7dc7',
-        container: '#dropin-container'
+        container: '#dropin-container',
+        locale: 'it_IT'
+
       }, function (err, dropinInstance) {
         if (err) {
           // Handle any errors that might've occurred when creating Drop-in
@@ -41,6 +43,9 @@ export default {
             
             setTimeout(() => {
               router.push({ name: 'postpayment' });
+
+              localStorage.removeItem('cart');
+
             }, 1000);    
 
           });
@@ -59,10 +64,14 @@ export default {
 
 
 <template>
-  <div class="container">
-    <h1>PaymentBraintree</h1>
-    <div id="dropin-container"></div>
-    <button id="submit-button">Purchase</button>
+  <div class="card pb-4">
+    <div class="card-header py-3">
+      <h5 class="mb-0">Step 2 - Inserimento dati pagamento</h5>
+    </div>
+    <div class="container">
+      <div id="dropin-container"></div>
+      <button class="btn btn-primary btn-lg btn-block mt-3" id="submit-button">Invia Pagamento</button>
+    </div>
   </div>
 </template>
 
