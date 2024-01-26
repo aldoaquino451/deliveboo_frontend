@@ -21,6 +21,8 @@ export const store = reactive({
 
   cartPrint: [],
   totalAmountPrint: [],
+
+  isPopupVisible: false,
 });
 
 // Salvo il carrello
@@ -40,7 +42,7 @@ function loadCart() {
 
 
 // Aggiungo al carrello
-export function addToCart(product) {
+export function addToCart(product, restaurant) {
   const existingProduct = store.cart.find(item => item.product.id === product.id);
 
   if (existingProduct) {
@@ -48,6 +50,7 @@ export function addToCart(product) {
   } else {
     if (store.cart.length === 0) {
       store.cart.push({ product, quantity: 1 });
+      localStorage.setItem('restaurant', restaurant);
     } else if (store.cart[0].product.restaurant_id === product.restaurant_id) {
       store.cart.push({ product, quantity: 1 });
     } else {
@@ -68,6 +71,9 @@ export function removeFromCart(product_id) {
       cartItem.quantity--;
     } else {
       store.cart = store.cart.filter(item => item.product.id !== product_id);
+      if (store.cart.length === 0) {
+        localStorage.removeItem('restaurant')
+      }
     }
 
     saveCart(store.cart);
