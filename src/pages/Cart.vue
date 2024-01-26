@@ -17,6 +17,10 @@ export default {
         return total + cartItem.product.price * cartItem.quantity;
       }, 0);
     },
+
+    restaurantName() {
+      return localStorage.getItem('restaurant');
+    }
   },
 
   methods: {
@@ -44,6 +48,7 @@ export default {
     clearLocalStorage (){
       this.toggleModalCart();
       localStorage.removeItem('cart');
+      localStorage.removeItem('restaurant');
       store.cart = [];
     },
 
@@ -57,6 +62,11 @@ export default {
       product.classList.toggle('d-block');
     },
   },
+
+  mounted() {
+
+  },
+
 };
 </script>
 
@@ -70,7 +80,7 @@ export default {
       </div>
       <p class="text-center mb-4 mt-2">Sei sicuro di voler svuotare il carrello?</p>
       <div class="d-flex gap-3 justify-content-center">
-        <button @click="clearLocalStorage" class="btn btn-danger">Elimina</button>
+        <button @click="clearLocalStorage" class="btn btn-danger">Svuota</button>
         <button @click="toggleModalCart" class="btn btn-secondary">Annulla</button>
       </div>
     </div>
@@ -96,6 +106,8 @@ export default {
     <h2 class="mb-4 text-uppercase text-center">Carrello</h2>
     
     <div v-if="store.cart.length > 0">
+      <h4 class="mb-3">{{ restaurantName }}</h4>
+
       <ol class="list-group list-group-numbered">
         <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="list-group-item d-flex justify-content-between align-items-start">
           <div class="ms-2 me-auto">
@@ -132,6 +144,7 @@ export default {
     </div>
 
     <p v-else class="text-center">Non hai ancora selezionato nessun prodotto da aggiungere nel carrello.</p>
+
   </section>
 
 </template>

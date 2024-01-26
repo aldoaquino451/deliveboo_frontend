@@ -164,7 +164,7 @@ export default {
         </h2>
         
         <div class="row row-cols-1 row-cols-lg-2">
-          <Product v-for="product in filteredProducts(category)" :product="product" :key="product.id"/>
+          <Product v-for="product in filteredProducts(category)" :restaurant_name="restaurant.name_restaurant" :product="product" :key="product.id"/>
         </div>
 
       </div>

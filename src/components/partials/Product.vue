@@ -6,6 +6,7 @@ export default {
 
   props: {
     product: Object,
+    restaurant_name: String,
   },
 
   data() {
@@ -24,8 +25,8 @@ export default {
       removeFromCart(product_id);
     },
 
-    addProduct(product) {
-      addToCart(product);
+    addProduct(product, restaurant_name) {
+      addToCart(product, restaurant_name);
     },
 
   },  
@@ -52,7 +53,7 @@ export default {
               <i class="fa-solid fa-minus"></i>
             </button>
             <span class="px-2 fw-bold">{{ getQuantity(product.id) }}</span>  
-            <button @click="addProduct(product)" class="px-2 py-1 btn btn-success">
+            <button @click="addProduct(product, restaurant_name)" class="px-2 py-1 btn btn-success">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
