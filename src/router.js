@@ -4,7 +4,7 @@ import Home from "./pages/Home.vue";
 import Payment from "./pages/Payment.vue";
 import DetailRestaurant from "./pages/DetailRestaurant.vue";
 import PostPayment from "./pages/PostPayment.vue";
-import PaymentBraintree from "./pages/PaymentBraintree.vue";
+// import PaymentBraintree from "./pages/PaymentBraintree.vue";
 
 
 const router =  createRouter ({
@@ -36,11 +36,11 @@ const router =  createRouter ({
       name:"postpayment",
       component: PostPayment
     },
-    {
-      path:"/paymentbraintree",
-      name:"paymentbraintree",
-      component: PaymentBraintree
-    },
+    // {
+    //   path:"/paymentbraintree",
+    //   name:"paymentbraintree",
+    //   component: PaymentBraintree
+    // },
   ]
 });
 
