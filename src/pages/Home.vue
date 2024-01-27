@@ -82,22 +82,36 @@ export default{
   <Typologies @startSearch="getRestaurantByTypologies" />
 
   <!-- stampo i ristoranti con all'interno le Restaurant Card e il Paginator -->
-  <div class="container py-4">
+  <div class="container d-flex py-4">
+    
+    <div class="col-9">
 
-    <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
+      <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
-    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-      <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
+      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
+      </div>
+        
+      <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
+
+      <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
     </div>
-      
-    <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
 
-    <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
+    <div class="cook col-3"></div>
 
   </div>
+
+
 
 </template>
 
 <style lang="scss">
+
+  .cook{
+    background-image: url(./sushi.png);
+    background-size: cover;
+    height: 300px;
+    width: 300px;
+  }
 
 </style>

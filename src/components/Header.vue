@@ -23,36 +23,36 @@ export default{
 
 <template>
 
-  <header class="py-3">
-    <div class="container h-100 d-flex justify-content-between ">
+    <header>
+      <div class="container px-5 py-3 h-100 d-flex justify-content-between ">
 
-      <!-- immagine del logo che porta alla home -->
-      <div class="h-100">
-        <router-link to="/">
-          <img class="h-100" src="/logoristo.png" alt="logoristo">
-        </router-link>
-      </div>
-
-      <!-- nav menu per login e carrello -->
-      <ul class="d-flex align-items-center">
-        <li>
-          <a :href="store.loginUrl">
-            <i class="fa-solid fa-user"></i>
-          </a>
-        </li>
-        <li>
-          <router-link to="/cart">
-            <!-- <i class="fa-solid fa-cart-shopping"></i> -->
-            <div class="position-relative">
-              <router-link to="/cart"><i class="fa-solid fa-cart-shopping mx-3"></i></router-link>
-              <div v-if="totalQuantity > 0" class="cart-quantity"><span>{{ totalQuantity }}</span></div>
-            </div>
+        <!-- immagine del logo che porta alla home -->
+        <div class="h-100">
+          <router-link to="/">
+            <img class="h-100" src="/logoristo.png" alt="logoristo">
           </router-link>
-        </li>
-      </ul>
+        </div>
 
-    </div>
-  </header>
+        <!-- nav menu per login e carrello -->
+        <ul class="d-flex align-items-center">
+          <li>
+            <a :href="store.loginUrl">
+              <div class="user"></div>
+            </a>
+          </li>
+          <li>
+            <router-link to="/cart">
+              <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+              <div class="position-relative">
+                <router-link to="/cart"><div class="cart"></div></router-link>
+                <div v-if="totalQuantity > 0" class="cart-quantity"><span>{{ totalQuantity }}</span></div>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+
+      </div>
+    </header>
   
 </template>
 
@@ -61,17 +61,28 @@ export default{
 header {
   position: fixed;
   z-index: 99;
-  width: 100%;
   height: 80px;
-  background-color: orange;
+  width: 100%;
+  background-color: #F23005;
 
   ul {
     gap: 60px;
-    i{
-      color: black;
+    .cart{
+      color: #F2F0E4;
       font-size: 1.8rem;
+      background-image: url(./cart.png);
+      background-size: cover;
+      height: 40px;
+      width: 40px;
+    }
+    .user{
+      color: #F2F0E4;
+      background-image: url(./user.png);
+      background-size: cover;
+      height: 40px;
+      width: 40px;
       &:hover{
-        color: white;
+        color: #A63921;
       }
     }
     .cart-quantity {
@@ -81,11 +92,12 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: red;
-      color: white;
+      background-color: #F2F0E4;
+      color: black;
       position: absolute;
       top: -12px;
-      right: 7px;
+      right: 0px;
+      border: 1px solid black;
     }
   }
 
