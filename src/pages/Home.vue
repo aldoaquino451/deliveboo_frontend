@@ -68,6 +68,7 @@ export default{
   },
 
   mounted(){
+    window.scrollTo(top);
     this.getTypologies('typologies');
     this.getRestaurants('restaurants');
     store.searchTypologies = [];
