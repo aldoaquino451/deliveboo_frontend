@@ -15,7 +15,10 @@ export default{
 
 <template>
 
-  <footer class="bg-dark text-light">
+  <div class="wave-footer"></div>
+
+  <footer>
+
     <div class="container py-5">
 
       <h3 class="text-center mb-5">Deliveboo</h3>
@@ -73,14 +76,25 @@ export default{
   
 </template>
 
-<style lang="scss" scoped>
 
-footer {
+<style lang="scss" scoped>
+.wave-footer{
+  height: 100px;
+  background-color: #F2F0E4;
+  background-image: url(./wavefooter.svg);
+  background-size: cover;
+  transform: scaleX(-1);
+}
+
+footer{
+  background-color: #260D07;
+  color: #F2F0E4;
+
   a {
     color: rgb(162, 161, 161);
     text-decoration: none;
     &:hover {
-      color: white;
+      color: #F2F0E4;
     }
   }
 
