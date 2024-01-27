@@ -86,8 +86,8 @@ header {
       }
     }
     .cart-quantity {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -95,8 +95,9 @@ header {
       background-color: #F2F0E4;
       color: black;
       position: absolute;
-      top: -12px;
-      right: 0px;
+      z-index: -1;
+      top: -13px;
+      right: 9px;
       border: 1px solid black;
     }
   }
