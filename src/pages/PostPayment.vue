@@ -17,7 +17,16 @@ export default {
         .then( res => {
           this.order = res.data;
           console.log(this.order.id);
-        })
+        });
+
+        axios.post(store.apiUrl + 'send-mail', order)
+          .then( res => {
+            if(res.data.success == true) {
+              console.log('Conferma ordine inviata')
+            } else {
+              console.log('Problemi con mailbox')
+            }
+          })
     }
   },
 
