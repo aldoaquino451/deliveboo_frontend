@@ -64,6 +64,7 @@ export default {
   },
   
   mounted() {
+    window.scrollTo(top);
     this.getProducts(this.$route.params.slug);
   },
 };
