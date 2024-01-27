@@ -46,6 +46,8 @@ export default {
 
               localStorage.removeItem('cart');
 
+
+
             }, 1000);    
 
           });
