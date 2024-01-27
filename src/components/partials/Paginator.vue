@@ -13,52 +13,35 @@ export default{
 
 <template>
 
-<div class="custom-paginator">
+  <div class="container"> 
     <button
       v-for="(link, index) in links"
       @click="$emit('getPage', link.url)"
       :key="index"
       :disabled="link.active || !link.url"
       v-html="link.label"
-      class="btn"
-      :class="{ 'btn-outline-danger': !link.active, 'btn-danger': link.active }"
+      class="btn btn-outline-primary"
     ></button>
   </div>
 
 </template>
 
 
-<style lang="scss" scoped>
-
-.custom-paginator {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.btn {
-  margin: 0 3px;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-outline-primary {
-  color: #F2542F;
-  background-color: transparent;
-  border: 1px solid #F2542F;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #F2542F;
-  border: 1px solid #F2542F;
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
+<style lang="scss">
+  .btn{
+    color: #260D07;
+    background-color: #F2F0E4;
+    border: 1px solid #260D07;
+    margin-right: 6px;
+    &:hover{
+      color: #F2F0E4;
+      background-color: #260D07;
+      border: 1px solid #260D07;
+    }
+    &:disabled{
+    color: #260D07;
+    background-color: #F2F0E4;
+    border: 1px solid #260D07;
+    }
+  }
 </style>

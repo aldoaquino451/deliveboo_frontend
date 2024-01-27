@@ -31,9 +31,8 @@ export default{
 <style>
 
 main {
-  background-color: orange;
-  padding-top: calc(80px + 30px);
-  padding-bottom: 50px;
+  background-color: #F2F0E4;
+  padding-top: 80px;
 }
 
 ul {
