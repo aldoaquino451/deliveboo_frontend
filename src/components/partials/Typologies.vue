@@ -29,20 +29,24 @@ export default {
   
     <!-- dentro l'input vengono passate due funzioni: quella che aggiunge la tipologia all'array e quella che fa partire la ricerca -->
     <section>
-      <div class="container d-flex">
-
-        <div class="imgpizza col-3"></div>
-
-        <div class="col-9 m-0 m-auto">
-          <nav>
-            <ul class="d-flex flex-wrap justify-content-center">
-              <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
-                <!-- <span></span><span></span><span></span><span></span> -->
-                  <input @click="addTypology(typology.id), $emit('startSearch')" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
-                      <label :for="typology.name">{{typology.name}}</label>
-              </li>
-            </ul>
-          </nav>
+      <div class="container-fr">
+        
+        <div class="row">
+  
+          <div class="imgpizza col-4"></div>
+  
+          <div class="col-8">
+            <nav>
+              <ul class="d-flex flex-wrap justify-content-between">
+                <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
+                  <!-- <span></span><span></span><span></span><span></span> -->
+                    <input @click="addTypology(typology.id), $emit('startSearch')" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
+                        <label :for="typology.name">{{typology.name}}</label>
+                </li>
+              </ul>
+            </nav>
+          </div>
+  
         </div>
 
       </div>
@@ -57,22 +61,12 @@ export default {
 
 section{
   background-color: #F23005;
-  padding-top: 80px;
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
+  padding-top: 30px;
 }
 
 nav ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    padding-top: 100px;
 }
 
 nav ul li{
@@ -101,8 +95,9 @@ label{
 
 .imgpizza{
   background-image: url(./pizza2.png);
-  background-size: cover;
-  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 450px;
 }
 
 .wave{
@@ -111,6 +106,11 @@ label{
   background-image: url(./wave.svg);
   background-size: cover;
   margin-top: 80px;
+}
+
+.container-fr{
+  width: 1500px;
+  margin: 0 auto;
 }
 
 </style>

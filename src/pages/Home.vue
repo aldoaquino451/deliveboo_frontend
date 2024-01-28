@@ -83,9 +83,9 @@ export default{
   <Typologies @startSearch="getRestaurantByTypologies" />
 
   <!-- stampo i ristoranti con all'interno le Restaurant Card e il Paginator -->
-  <div class="container d-flex py-4">
+  <div class="container-fr d-flex position-relative">
     
-    <div class="col-9">
+    <div>
 
       <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
@@ -98,7 +98,7 @@ export default{
       <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
     </div>
 
-    <div class="cook col-3"></div>
+    <div class="cook"></div>
 
   </div>
 
@@ -109,10 +109,11 @@ export default{
 <style lang="scss">
 
   .cook{
+    right: 100px;
     background-image: url(./sushi.png);
     background-size: cover;
-    height: 300px;
     width: 300px;
+    height: 300px;
   }
 
 </style>
