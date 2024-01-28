@@ -40,8 +40,6 @@ export default {
       store.restaurant_id = product["product"]["restaurant_id"]; 
     });
 
-    console.log(this.store.cartPrint);
-    console.log(this.store.cart);
 
     this.store.totalAmountPrint = this.totalAmount.toFixed(2);
   },
@@ -103,7 +101,6 @@ export default {
       const isFormValid = Object.keys(this.validationErrors).length === 0;
 
       if (isFormValid) {
-        console.log('Pagamento avvenuto con successo!');
         localStorage.setItem('customerName', this.form.nome);
         localStorage.setItem('customerSurname', this.form.cognome);
         localStorage.setItem('customerAddress', this.form.indirizzo);

@@ -7,7 +7,8 @@ export default {
 
   data() {
     return {
-      order: {}
+      order: {},
+      store
     }
   },
 
@@ -17,10 +18,15 @@ export default {
         .then( res => {
           this.order = res.data;
           console.log(this.order.id);
+          
         });
 
-        axios.post(store.apiUrl + 'send-mail', order)
+    },
+
+    sendMail(order) {
+        axios.get(store.apiUrl + 'send-email/'+ order)
           .then( res => {
+            console.log(res)
             if(res.data.success == true) {
               console.log('Conferma ordine inviata')
             } else {
@@ -32,10 +38,13 @@ export default {
 
   mounted() {
     window.scrollTo(top);
-    localStorage.setItem('order', 1);
+    localStorage.setItem('order', 23);
     // localStorage.removeItem('order');
     const order = localStorage.getItem('order');
     this.getOrder(order);
+    this.sendMail(order);
+
+    this.store.cart = []
   },
 }
 </script>
