@@ -38,14 +38,14 @@ export default {
 
       <div class ="wrapper">
 
-        <div href = "#" class="item">
+        <div class="item">
           <div class="polaroid">
             <img src = "https://i.pinimg.com/originals/74/84/4c/74844c4207ec819b6ffaa6291591311e.jpg"/>
             <span class="caption">
               <p class="title">{{ restaurant.name_restaurant }}</p>
-                <ul class="d-flex flex-wrap">
+                <ul class="d-flex justify-content-center">
                   <li v-for="typology in restaurant.typologies" :key="typology.id">
-                    <span class="badge tags">{{ typology.name }}</span>
+                    <span class="badge">{{ typology.name }}</span>
                   </li>
                   </ul>
             </span>
@@ -70,17 +70,19 @@ export default {
 
 section {
   font-family: 'Caveat Brush', cursive;
+  margin-bottom: 60px;
 }
-
-.wrapper{
-
+section:hover{
+  z-index: 99;
 }
 .polaroid {
   background: #fff;
   padding: 1rem;
   box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
-  width: 340px;
+  width: 330px;
   color: black;
+  margin-left: -10px;
+  min-height: 330px;
 }
 
 .polaroid:hover{
@@ -91,17 +93,21 @@ section {
   height: auto;
 }
 .title{
+
   text-align: center;
-    margin-top: -5px;
     font-size: 3rem;
     line-height: 2rem;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
-.tags{
+
+.badge{
+    font-weight: 500;
     display: inline;
     color: black;
     font-size: 1.5rem;
     text-align: center;
+    text-transform: capitalize;
 }
 .item {
   width: 30%;

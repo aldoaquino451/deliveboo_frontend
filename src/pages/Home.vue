@@ -87,7 +87,7 @@ export default{
 
       <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
-      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-center">
         <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
       </div>
         

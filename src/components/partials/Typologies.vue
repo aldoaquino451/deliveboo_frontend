@@ -69,7 +69,6 @@ export default {
 
 section{
   background-color: #F23005;
-  padding-top: 30px;
 }
 
 nav ul {
