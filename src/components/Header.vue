@@ -24,17 +24,19 @@ export default{
 <template>
 
     <header>
-      <div class="container px-5 py-3 h-100 d-flex justify-content-between ">
+      <div class="container h-100 d-flex justify-content-between align-items-center">
 
         <!-- immagine del logo che porta alla home -->
-        <div class="h-100">
+        <div class="h-75">
           <router-link to="/">
             <img class="h-100" src="/logoristo.png" alt="logoristo">
           </router-link>
         </div>
 
+          <span class="logo-text">Deliveoo</span>
+
         <!-- nav menu per login e carrello -->
-        <ul class="d-flex align-items-center">
+        <ul class="d-flex align-items-center h-100">
           <li>
             <a :href="store.loginUrl">
               <div class="user"></div>
@@ -60,27 +62,31 @@ export default{
 
 header {
   position: fixed;
-  z-index: 99;
-  height: 80px;
+  z-index: 999;
+  height: 100px;
   width: 100%;
   background-color: #F23005;
-
+  .logo-text{
+    font-family: "Lobster", sans-serif;
+    color: #F2F0E4;
+    font-size: 4rem;
+  }
   ul {
-    gap: 60px;
+    gap: 30px;
     .cart{
       color: #F2F0E4;
       font-size: 1.8rem;
       background-image: url(./cart.png);
       background-size: cover;
-      height: 40px;
-      width: 40px;
+      height: 50px;
+      width: 50px;
     }
     .user{
       color: #F2F0E4;
       background-image: url(./user.png);
       background-size: cover;
-      height: 40px;
-      width: 40px;
+      height: 50px;
+      width: 50px;
       &:hover{
         color: #A63921;
       }
