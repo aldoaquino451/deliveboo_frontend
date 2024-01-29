@@ -83,7 +83,7 @@ export default{
 
   <div class="container d-flex justify-content-center">
     
-    <div class="col-12 col-md-10">
+    <div class="col-12">
 
       <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
@@ -96,7 +96,7 @@ export default{
       <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
     </div>
 
-    <div class="cook col-2 d-none d-xxl-block"></div>
+    <div class="d-none"></div>
 
   </div>
 
