@@ -38,8 +38,6 @@ export default {
 
   mounted() {
     window.scrollTo(top);
-    localStorage.setItem('order', 23);
-    // localStorage.removeItem('order');
     const order = localStorage.getItem('order');
     this.getOrder(order);
     this.sendMail(order);
@@ -80,7 +78,7 @@ export default {
             {{ product.ingredients }}
           </div>
           <div class="d-inline-block mt-2">
-            <span class="px-2 fw-bold">{{ product.quantity }}</span>
+            <span class="px-2 fw-bold">{{ product.pivot.quantity }}</span>
           </div>
         </li>
       </ol>
