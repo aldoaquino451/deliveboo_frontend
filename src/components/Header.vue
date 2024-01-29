@@ -33,7 +33,7 @@ export default{
           </router-link>
         </div>
 
-          <span class="logo-text">Deliveoo</span>
+          <span class="logo-text">DeliveBoo</span>
 
         <!-- nav menu per login e carrello -->
         <ul class="d-flex align-items-center h-100">

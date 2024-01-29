@@ -21,39 +21,47 @@ export default {
 
     },
   },
-  
 }
 </script>
 
 <template>
   
-    <!-- dentro l'input vengono passate due funzioni: quella che aggiunge la tipologia all'array e quella che fa partire la ricerca -->
-    <section>
-      <div class="container-fr">
-        
-        <div class="row">
-  
-          <div class="imgpizza col-4"></div>
-  
-          <div class="col-8">
-            <nav>
-              <ul class="d-flex flex-wrap justify-content-between">
-                <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
-                  <!-- <span></span><span></span><span></span><span></span> -->
-                    <input @click="addTypology(typology.id), $emit('startSearch')" type="checkbox" class="btn-check" :id="typology.name" autocomplete="off" :value="typology.id">
-                        <label :for="typology.name">{{typology.name}}</label>
-                </li>
-              </ul>
-            </nav>
-          </div>
-  
+  <section>
+    <div class="container">
+      
+      <div class="row">
+
+        <div class="imgpizza col-4 d-none d-xl-block"></div>
+
+        <div class="col-12 col-xl-8 d-flex align-items-center">
+          <nav>
+            <ul class="d-flex flex-wrap justify-content-center">
+              <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
+
+                <button
+                  @click="addTypology(typology.id), $emit('startSearch')"
+                  type="checkbox"
+                  class="toggle-button"
+                  :id="typology.name"
+                  autocomplete="off"
+                  :value="typology.id"
+                  :class="{ active: store.searchTypologies.includes(typology.id) }"
+                >
+                  <label :for="typology.name">{{ typology.name }}</label>
+                </button>
+
+              </li>
+            </ul>
+          </nav>
         </div>
 
       </div>
 
-      <div class="wave"></div>
+    </div>
 
-    </section>
+    <div class="wave"></div>
+
+  </section>
 
 </template>
 
@@ -69,24 +77,32 @@ nav ul {
     padding-top: 100px;
 }
 
-nav ul li{
-  color: black;
-  background-color: #F2F0E4;
-  font-size: 16px;
-  box-shadow: 0px 0px 7px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  height: 120px;
-  width: 120px;
-  text-transform: capitalize;
-  text-align: center;
-  line-height: 115px;
-  transition: background-color 0.3s;
-  transition: scale 0.3s;
-  &:hover, &:active{
-  background-color: #260D07;
+button {
+  padding: 0.6em 1em;
+  border: 4px solid #F2F0E4;
+  transition: ease-in-out 0.3s;
+  background-color: transparent;
   color: #F2F0E4;
-  scale: 1.05;
-  }
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: sans-serif;
+  margin: 3px;
+  cursor: pointer;
+  border-radius: 15px;
+  text-transform: capitalize;
+}
+ 
+ button:hover {
+  transform: scale(1.2) rotate(10deg);
+  background-color: #fa725a;
+  color: white;
+ }
+
+ .toggle-button.active {
+  transform: scale(1.2) rotate(10deg);
+  background-color: #fa725a;
+  color: white;
+  transition: none;
 }
 
 label{
@@ -98,12 +114,14 @@ label{
   background-size: contain;
   background-repeat: no-repeat;
   height: 450px;
+  background-position: center;
 }
 
 .wave{
   height: 100px;
   background-color: #F23005;
   background-image: url(./wave.svg);
+  background-position: center;
   background-size: cover;
   margin-top: 80px;
 }
