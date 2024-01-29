@@ -18,6 +18,7 @@ export const store = reactive({
   typologies: [],
   restaurants: [],
   searchTypologies: [],
+  restaurant_id: 0,
 
   cartPrint: [],
   totalAmountPrint: [],

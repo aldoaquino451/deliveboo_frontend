@@ -7,41 +7,36 @@ import PostPayment from "./pages/PostPayment.vue";
 // import PaymentBraintree from "./pages/PaymentBraintree.vue";
 
 
-const router =  createRouter ({
-  history:createWebHistory(),
+const router = createRouter({
+  history: createWebHistory(),
   // linkExactActiveClass: 'active',
-  routes:[
+  routes: [
     {
-      path:"/",
-      name:"home",
+      path: "/",
+      name: "home",
       component: Home
     },
     {
-      path:"/detail-restaurant/:slug",
-      name:"detailRestaurant",
+      path: "/detail-restaurant/:slug",
+      name: "detailRestaurant",
       component: DetailRestaurant
     },
     {
-      path:"/cart",
-      name:"cart",
+      path: "/cart",
+      name: "cart",
       component: Cart
     },
     {
-      path:"/payment",
-      name:"payment",
+      path: "/payment",
+      name: "payment",
       component: Payment
     },
     {
-      path:"/postpayment",
-      name:"postpayment",
+      path: "/postpayment",
+      name: "postpayment",
       component: PostPayment
     },
-    // {
-    //   path:"/paymentbraintree",
-    //   name:"paymentbraintree",
-    //   component: PaymentBraintree
-    // },
   ]
 });
 
-export {router}
+export { router }

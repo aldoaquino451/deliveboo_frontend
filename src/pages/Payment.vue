@@ -1,7 +1,8 @@
 <script>
 import axios from 'axios';
 import { store } from '../data/store';
-import PaymentBraintree from './PaymentBraintree.vue';
+import { router } from '../router';
+import PaymentBraintree from '../components/partials/PaymentBraintree.vue';
 
 export default {
 
@@ -10,6 +11,7 @@ export default {
   data() {
     return {
       store,
+      router,
       form: {
         nome: '',
         cognome: '',
@@ -53,6 +55,59 @@ export default {
   },
 
   methods: {
+
+    getOrder() {
+      const cart = JSON.stringify(this.store.cartPrint);
+      const name = localStorage.getItem('customerName');
+      const lastname = localStorage.getItem('customerSurname');
+      const address = localStorage.getItem('customerAddress');
+      const email = localStorage.getItem('customerEmail');
+      const phone_number = localStorage.getItem('customerNumber');
+      const total_price = this.totalAmount.toFixed(2);
+      const restaurant_id = store.restaurant_id;
+
+      axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price + '/' + restaurant_id)
+        .then(res => {
+          localStorage.setItem('order', res.data)
+        })
+
+    },
+
+    formBraintree() {
+      var submitButton = document.querySelector('#submit-button');
+
+      braintree.dropin.create(
+        {
+          authorization: 'sandbox_7b574dqm_b22n4gtx5t4h7dc7',
+          container: '#dropin-container',
+          locale: 'it_IT'
+
+        }, 
+        function (err, dropinInstance) {
+          if (err) {
+            // Handle any errors that might've occurred when creating Drop-in
+            console.error(err);
+            return;
+          }
+
+          submitButton.addEventListener('click', function () {
+            dropinInstance.requestPaymentMethod(function (err, payload) {
+              if (err) {
+                // Handle errors in requesting payment method
+              }
+                           
+              setTimeout(() => {
+                router.push({ name: 'postpayment' });
+                localStorage.removeItem('cart');
+              }, 1000);    
+              
+            });
+          });
+        }
+      );
+      
+      this.getOrder();
+    },
 
     // VALIDAZIONI
     isValidName() {
@@ -109,20 +164,6 @@ export default {
         
         // this.$router.push({ name: 'postpayment' });
 
-        const cart = JSON.stringify(this.store.cartPrint);
-        const name = localStorage.getItem('customerName');
-        const lastname = localStorage.getItem('customerSurname');
-        const address = localStorage.getItem('customerAddress');
-        const email = localStorage.getItem('customerEmail');
-        const phone_number = localStorage.getItem('customerNumber');
-        const total_price = this.totalAmount.toFixed(2);
-        const restaurant_id = store.restaurant_id;
-
-        axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + email + '/' + phone_number + '/' + total_price + '/' + restaurant_id)
-          .then(res => {
-            console.log(res.data);
-          });
-
         const hideButton = document.getElementById('button-validate');
         hideButton.classList.add('d-none');
 
@@ -131,25 +172,14 @@ export default {
 
         // localStorage.removeItem('cart');
         // this.store.cart = [];
+
+        this.formBraintree();
       } 
       else {
         console.log('Errore: Dati non validi', this.validationErrors);
       }
     },
     
-    // getApi() {
-    //   const cart = JSON.stringify(this.store.cart);
-    //   const name = 'admin';
-    //   const lastname = 'admin';
-    //   const address = 'vai qualunque 11';
-    //   const phone_number = '3442344343';
-    //   const total_price  = this.totalAmount.toFixed(2);
-
-    //   axios.get(store.apiUrl + "save-order/" + cart + '/' + name + '/' + lastname + '/' + address + '/' + phone_number + '/' + total_price)
-    //     .then(res => {
-    //       console.log(res.data);
-    //     });
-    // }
   },
 };
 </script>
@@ -158,6 +188,8 @@ export default {
   <section>
     <div class="container">
       <div class="row">
+        
+        <!-- Form dati utente e pagamento -->
         <div class="col-md-8 mb-4">
           <!-- DATI UTENTE -->
           <div id="button-validate" class="card mb-4">
@@ -223,6 +255,7 @@ export default {
 
         </div>
 
+        <!-- Riepilogo Carrello -->
         <div class="col-md-4 mb-4">
           <div class="card mb-4">
             <div class="card-header py-3">
@@ -251,6 +284,7 @@ export default {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
