@@ -37,6 +37,7 @@ export default{
       axios.get(store.apiUrl + endpoint)
         .then( res => {
           store.restaurants = res.data;
+          console.log(res.data);
           this.restaurantTotal = 0;
         })
     },

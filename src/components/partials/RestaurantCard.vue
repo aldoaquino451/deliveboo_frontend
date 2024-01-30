@@ -36,11 +36,12 @@ export default {
         </div>
       </div> -->
 
+
       <div class ="wrapper">
 
         <div class="item">
           <div class="polaroid">
-            <img src = "https://i.pinimg.com/originals/74/84/4c/74844c4207ec819b6ffaa6291591311e.jpg"/>
+            <img :src = restaurant?.image />
             <span class="caption">
               <p class="title">{{ restaurant.name_restaurant }}</p>
                 <ul class="d-flex justify-content-center">
