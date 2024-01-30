@@ -81,7 +81,7 @@ export default {
       </div>
       <p class="text-center mt-2">Stai già acquistando da un altro ristorante.<br>Svuota il carrello o porta a termine il pagamento precedente per procedere.</p>
       <div class="d-flex gap-3 justify-content-center">
-        <button @click="store.isPopupVisible = false" class="btn btn-secondary">OK</button>
+        <button @click="store.isPopupVisible = false" class="ok-btn px-3 py-2">OK</button>
       </div>
     </div>
   </div>
@@ -171,8 +171,21 @@ export default {
 
 <style lang="scss" scoped>
 
+.ok-btn{
+  border: none;
+  border-radius: 25px;
+  background-color: #A63921;
+  color: white;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  &:hover{
+  background-color: #F23005;
+ }
+}
+
 #modal {
   position: fixed;
+  padding-top: 100px;
   z-index: 999;
   right: 0;
   left: 0;
@@ -191,6 +204,7 @@ export default {
       top: 10px;
       cursor: pointer;
     }
+    
   }
 }
 
