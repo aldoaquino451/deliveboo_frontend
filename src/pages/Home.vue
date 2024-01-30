@@ -80,24 +80,52 @@ export default{
 <template>
 
   <Typologies @startSearch="getRestaurantByTypologies" />
-
-  <div class="container d-flex justify-content-center">
+<!-- 
+  <div class="my-container">
     
-    <div class="col-12 col-md-10">
+    <div class="row">
+      <div class="col-12 col-md-8">
 
-      <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
+        <div class="container-fluid">
+          <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
-      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-        <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
+          <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
+          </div>
+            
+          <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
+
+          <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
+        </div>
+
       </div>
-        
-      <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
 
-      <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
+      <div class="cook col-md-4"></div>
     </div>
 
-    <div class="cook col-2 d-none d-xxl-block"></div>
+  </div> -->
 
+  <div class="my-container">
+    <div class="row">
+      <div class="col-12 col-xxl-9">
+        <div class="container-fluid">
+          <!-- <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p> -->
+
+          <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
+          </div>
+            
+          <!-- <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p> -->
+
+          <!-- <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/> -->
+        </div>
+      </div>
+
+      <div class="cook d-none d-xxl-block col-xxl-3 ">
+        <img class="img-fluid" src="\public\sushi.png" alt="">
+      </div>
+
+    </div>
   </div>
 
 
@@ -106,13 +134,18 @@ export default{
 
 <style lang="scss">
 
-  .cook{
-    right: 100px;
-    background-image: url(./sushi.png);
-    background-size: cover;
-    background-position: center;
-    width: 300px;
-    height: 300px;
-  }
+.my-container {
+  padding: 100px 40px 150px;
+  margin: 0 auto;
+}
+
+// .cook{
+//   right: 100px;
+//   background-image: url(./sushi.png);
+//   background-size: cover;
+//   background-position: center;
+//   // width: 300px;
+//   // height: 300px;
+// }
 
 </style>

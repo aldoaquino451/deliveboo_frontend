@@ -33,27 +33,26 @@ export default {
 
         <div class="imgpizza col-4 d-none d-xl-block"></div>
 
-        <div class="col-12 col-xl-8 d-flex align-items-center">
-          <nav>
-            <ul class="d-flex flex-wrap justify-content-center">
-              <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
+        <nav class="col-12 col-xl-8">
+          <ul class="d-flex flex-wrap justify-content-center mx-xl-4">
+            <li :class="typology.restaurants.length ? 'm-2' : 'd-none'" v-for="typology in store.typologies" :key="typology.id">
 
-                <button
-                  @click="addTypology(typology.id), $emit('startSearch')"
-                  type="checkbox"
-                  class="toggle-button"
-                  :id="typology.name"
-                  autocomplete="off"
-                  :value="typology.id"
-                  :class="{ active: store.searchTypologies.includes(typology.id) }"
-                >
-                  <label :for="typology.name">{{ typology.name }}</label>
-                </button>
+              <button
+                @click="addTypology(typology.id), $emit('startSearch')"
+                type="checkbox"
+                class="toggle-button"
 
-              </li>
-            </ul>
-          </nav>
-        </div>
+                :id="typology.name"
+                autocomplete="off"
+                :value="typology.id"
+                :class="{ active: store.searchTypologies.includes(typology.id) }"
+              >
+                <label :for="typology.name">{{ typology.name }}</label>
+              </button>
+
+            </li>
+          </ul>
+        </nav>
 
       </div>
 
