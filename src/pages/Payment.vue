@@ -292,5 +292,22 @@ export default {
 
 <style lang="scss" scoped>
 
+section{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+#button-validate {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 20px;
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  ol {
+    margin-bottom: 100px;
+  }
+}
+
 
 </style>
