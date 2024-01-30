@@ -61,7 +61,7 @@ export default {
   computed: {
     filteredProducts() {
       return (category) => this.products.filter(product => product.category_id === category.id);
-    }
+    },
   },
   
   mounted() {
@@ -88,42 +88,39 @@ export default {
 
 
   <!-- Stampo l'immagine del ristorante e posiziono in absolute la sezione delle info e il botton per tornare indietro  -->
-  <div id="heroes" class="position-relative w-100">
-    <img
-      class="w-100 h-100 object-fit-cover"
-      :src="restaurant?.image"
-      alt=""
-    />
+  <div id="heroes" class="position-relative">
+    <div class="image">
+      <img
+        class="w-100 h-100 object-fit-cover"
+        :src="restaurant?.image"
+        alt=""
+      />
+    </div>
 
     <div class="w-100 restaurant-info">
-      <div class="container">
-        <div class="row">
-
-          <!-- <div class="col-2 d-flex justify-content-center align-items-end">
-            <router-link class="btn btn-primary btn-return" :to="{ name: 'home' }"
-              >Torna
-            </router-link>
-          </div> -->
-
-          <div class="col-10 offset-1">
-            <div class="details-restaurant card w-100 p-3">
-              <h1 class="title text-center">{{ restaurant.name_restaurant }}</h1>
-              <div class="mt-1 d-flex gap-2">
+      <div class="container d-flex justify-content-center">
+          <div class="my-card-restaurant" >
+            <div class="details-restaurant my-card w-100 p-4">
+              <h1 class="title text-center m-0">{{ restaurant.name_restaurant }}</h1>
+              <div class="d-flex gap-2 justify-content-center">
                 <span
-                  class="badge bg-success  "
+                  class="text-capitalize fs-5"
                   v-for="typology in restaurant.typologies"
                   :key="typology.id"
                   >{{ typology.name }}
                 </span>
               </div>
-              <p class="mt-3">
-                <span class="fw-bold">Descrizione:</span> {{ restaurant.description }}
+              <p class="mt-4 fs-5 fst-italic text-center d-flex justify-content-center gap-1">
+                <i class="fa-solid fa-quote-left mb-2"></i>
+                {{ restaurant.description }}
+                <i class="fa-solid fa-quote-right mb-2"></i>
               </p>
 
-              <div id="catagories" class="container">
-                <div class="d-flex gap-4 justify-content-center">
+              <!-- Stampo le categorie del ristorante -->
+              <div id="catagories" class="container mt-4">
+                <div class="d-flex gap-2 gap-md-4 flex-wrap justify-content-center">
                     <a href="#products"
-                      class=" menu text-center text-decoration-none text-dark pe-4"
+                      class=" menu text-center text-decoration-none text-dark"
                       @click="getProducts(restaurant.slug)">
                       <img
                         class="rounded-circle object-fit-cover"
@@ -147,50 +144,17 @@ export default {
               </div>
               
             </div>
-
-
           </div>
-
-        </div>
       </div>
     </div>
+
   </div>
 
-
-  <!-- Stampo le categorie del ristorante -->
-  <!-- <div id="catagories" class="container">
-    <div class="d-flex gap-4 justify-content-center">
-        <a href="#products"
-          class=" menu text-center text-decoration-none text-dark pe-4"
-          @click="getProducts(restaurant.slug)">
-          <img
-            class="rounded-circle object-fit-cover"
-            :src="imageUrl + 'menu.png'"
-            alt=""/>
-          <p class="text-capitalize m-0 mt-2 fs-6">menu completo</p>
-        </a>
-
-        <a href="#products"
-          class=" menu text-center text-decoration-none text-dark"
-          @click="getProductsByCategory(restaurant.id, category.id)"
-          v-for="category in categories"
-          :key="category.id">
-          <img
-            class="rounded-circle object-fit-cover"
-            :src="imageUrl + category.image"
-            alt=""/>
-          <p class="text-capitalize m-0 mt-2">{{ category.name }}</p>
-        </a>
-    </div>
-  </div> -->
-
-
   <!-- Stampo la lista dei prodotti suddivisi per categoria -->
-  <div id="products" class="container mb-5">
+  <div id="products">
     <div v-for="category in categories" :key="category.id">
-      <div v-if="filteredProducts(category).length > 0">
-
-        <h2 class="text-success mb-3 fs-2">
+      <div class="container mb-5" v-if="filteredProducts(category).length > 0">
+        <h2 class="mb-4 fw-bold">
           {{ category.name }}
         </h2>
         
@@ -231,42 +195,95 @@ export default {
 }
 
 #heroes {
-  height: 450px;
+  .image {
+    height: 450px;
+    background-color: white;
+    border-bottom-right-radius: 20%;
+    border-bottom-left-radius: 20%;
+    overflow: hidden;
+  }
+
   .restaurant-info {
     position: absolute;
-    bottom: -70px;
-
-    .title {
-      font-family: 'Lobster', sans-serif;
-      font-size: 3rem;
+    z-index: 10;
+    top: 250px;
+    
+    .my-card-restaurant {
+      min-width: 600px;
+    }
+    .my-card {
+      border-radius: 20px;
+      background-color: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      
+      .title {
+        font-family: 'Lobster', sans-serif;
+        font-size: 3rem;
+      }
     }
   }
-  .btn-return{
-    margin-bottom: 60px;
-  }
-}
 
-#catagories {
-  // margin-top: calc(120px + 50px);
+  #catagories {
 
-  img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .menu {
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-      scale: 1.1;
+    .menu:first-child {
+      margin-right: 30px;
+    }
+  
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  
+    .menu {
+      cursor: pointer;
+      transition: all 0.3s;
+  
+      &:hover {
+        scale: 1.1;
+      }
     }
   }
 }
 
 #products {
-  padding-top: 80px;
+  padding-top: 170px;
   padding-bottom: 150px;
+
+
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #heroes {
+
+    #catagories {
+  
+      .menu:first-child {
+        margin-right: 0px;
+      }
+  
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #heroes {
+
+    #catagories {
+  
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
 }
 
 </style>
