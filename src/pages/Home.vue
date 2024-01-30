@@ -37,7 +37,6 @@ export default{
       axios.get(store.apiUrl + endpoint)
         .then( res => {
           store.restaurants = res.data;
-          console.log(res.data);
           this.restaurantTotal = 0;
         })
     },
@@ -82,44 +81,35 @@ export default{
 
   <Typologies @startSearch="getRestaurantByTypologies" />
 
-  <div class="container d-flex justify-content-center">
+  <div class="my-container">
     
-    <div class="col-12">
+    <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
 
-      <p v-if="restaurantTotal != 0" class="results text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
-
-      <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
-
-      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-center">
-        <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
-      </div>
-        
-      <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
-
+    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 ">
+      <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
     </div>
+      
+    <p v-if="restaurantTotal != 0" class="text-end results mt-3">Risultati della ricerca: {{ restaurantTotal }}</p>
 
-    <div class="d-none"></div>
+    <p v-if="store.restaurants.length === 0" class="text-center results">Non ci sono ristoranti per le tipologie scelte!</p>
 
   </div>
-
-
 
 </template>
 
 <style lang="scss" scoped>
 
-.results{
-    font-family: lobster;
-    font-size: 1.5em;
-  }
+.my-container {
+  padding: 80px 0 150px;
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: 500px;
 
-  .cook{
-    right: 100px;
-    background-image: url(./sushi.png);
-    background-size: cover;
-    background-position: center;
-    width: 300px;
-    height: 300px;
+  .results{
+    font-size: 1.3em;
   }
-
+  
+}
+  
 </style>

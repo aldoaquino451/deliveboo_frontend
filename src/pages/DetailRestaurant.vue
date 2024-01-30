@@ -17,6 +17,7 @@ export default {
       products: [],
       categories: [],
       productId: [],
+      imageUrl: 'http://127.0.0.1:8000/storage/uploads/categories/',
     };
   },
 
@@ -98,15 +99,15 @@ export default {
       <div class="container">
         <div class="row">
 
-          <div class="col-2 d-flex justify-content-center align-items-end">
+          <!-- <div class="col-2 d-flex justify-content-center align-items-end">
             <router-link class="btn btn-primary btn-return" :to="{ name: 'home' }"
               >Torna
             </router-link>
-          </div>
+          </div> -->
 
-          <div class="col-8">
+          <div class="col-10 offset-1">
             <div class="details-restaurant card w-100 p-3">
-              <h1 class="text-center">{{ restaurant.name_restaurant }}</h1>
+              <h1 class="title text-center">{{ restaurant.name_restaurant }}</h1>
               <div class="mt-1 d-flex gap-2">
                 <span
                   class="badge bg-success  "
@@ -118,7 +119,36 @@ export default {
               <p class="mt-3">
                 <span class="fw-bold">Descrizione:</span> {{ restaurant.description }}
               </p>
+
+              <div id="catagories" class="container">
+                <div class="d-flex gap-4 justify-content-center">
+                    <a href="#products"
+                      class=" menu text-center text-decoration-none text-dark pe-4"
+                      @click="getProducts(restaurant.slug)">
+                      <img
+                        class="rounded-circle object-fit-cover"
+                        :src="imageUrl + 'menu.png'"
+                        alt=""/>
+                      <p class="text-capitalize m-0 mt-2 fs-6">menu completo</p>
+                    </a>
+
+                    <a href="#products"
+                      class=" menu text-center text-decoration-none text-dark"
+                      @click="getProductsByCategory(restaurant.id, category.id)"
+                      v-for="category in categories"
+                      :key="category.id">
+                      <img
+                        class="rounded-circle object-fit-cover"
+                        :src="imageUrl + category.image"
+                        alt=""/>
+                      <p class="text-capitalize m-0 mt-2">{{ category.name }}</p>
+                    </a>
+                </div>
+              </div>
+              
             </div>
+
+
           </div>
 
         </div>
@@ -128,14 +158,14 @@ export default {
 
 
   <!-- Stampo le categorie del ristorante -->
-  <div id="catagories" class="container">
+  <!-- <div id="catagories" class="container">
     <div class="d-flex gap-4 justify-content-center">
         <a href="#products"
-          class=" menu text-center text-decoration-none text-dark"
+          class=" menu text-center text-decoration-none text-dark pe-4"
           @click="getProducts(restaurant.slug)">
           <img
             class="rounded-circle object-fit-cover"
-            src="/public/pizza.jpg"
+            :src="imageUrl + 'menu.png'"
             alt=""/>
           <p class="text-capitalize m-0 mt-2 fs-6">menu completo</p>
         </a>
@@ -147,12 +177,12 @@ export default {
           :key="category.id">
           <img
             class="rounded-circle object-fit-cover"
-            src="/public/pizza.jpg"
+            :src="imageUrl + category.image"
             alt=""/>
           <p class="text-capitalize m-0 mt-2">{{ category.name }}</p>
         </a>
     </div>
-  </div>
+  </div> -->
 
 
   <!-- Stampo la lista dei prodotti suddivisi per categoria -->
@@ -201,10 +231,15 @@ export default {
 }
 
 #heroes {
-  height: 350px;
+  height: 450px;
   .restaurant-info {
     position: absolute;
-    bottom: -120px;
+    bottom: -70px;
+
+    .title {
+      font-family: 'Lobster', sans-serif;
+      font-size: 3rem;
+    }
   }
   .btn-return{
     margin-bottom: 60px;
@@ -212,7 +247,7 @@ export default {
 }
 
 #catagories {
-  margin-top: calc(120px + 50px);
+  // margin-top: calc(120px + 50px);
 
   img {
     width: 80px;
@@ -220,14 +255,11 @@ export default {
   }
 
   .menu {
-    img {
-      
-      border: 4px solid white;
-    }
     cursor: pointer;
     transition: all 0.3s;
+
     &:hover {
-      scale: 1.2;
+      scale: 1.1;
     }
   }
 }

@@ -1,10 +1,11 @@
 @import "bootstrap/scss/bootstrap";
 
 #app {
-  display: flex;
+  font-family: 'Lato', sans-serif;
   flex-direction: column;
   min-height: 100vh;
   overflow: hidden;
+  background-color: #F2F0E4;
 }
 
 .custom-popup {

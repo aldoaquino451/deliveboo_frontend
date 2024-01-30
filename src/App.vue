@@ -31,7 +31,6 @@ export default{
 <style>
 
 main {
-  background-color: #F2F0E4;
   padding-top: 100px;
 }
 

@@ -16,102 +16,63 @@ export default {
 }
 </script>
 
+
 <template>
 
-  <section>
-
+  <div class="col">
     <router-link :to="{ name: 'detailRestaurant', params: {slug: restaurant.slug} }">
-
-      <!-- <div class="card">
-        <div class="card-body d-flex flex-column">
-          <h6 class="card-title fw-bold text-uppercase text-center">{{ restaurant.name_restaurant }}</h6>
-          <p class="card-text">{{ restaurant.description }}</p>
-          <ul class="d-flex gap-1 flex-wrap-reverse justify-content-end align-content-start">
-            <li v-for="typology in restaurant.typologies" :key="typology.id">
-                <span class="badge">
-                  {{ typology.name }}
-                </span>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-
-
-      <div class ="wrapper">
-
-        <div class="item">
+      <div class="item">
           <div class="polaroid">
-            <img :src = restaurant?.image />
-            <span class="caption">
-              <p class="title">{{ restaurant.name_restaurant }}</p>
-                <ul class="d-flex justify-content-center">
-                  <li v-for="typology in restaurant.typologies" :key="typology.id">
-                    <span class="badge">{{ typology.name }}</span>
-                  </li>
-                  </ul>
-            </span>
-          </div>
-        </div>
-
+          <img :src = restaurant?.image />
+          <span class="caption">
+            <p class="title fs-1">{{ restaurant.name_restaurant }}</p>
+              <ul class="d-flex gap-3 row-gap-0 justify-content-center flex-wrap">
+                <li v-for="typology in restaurant.typologies" :key="typology.id">
+                  <span class="my-badge fs-5">{{ typology.name }}</span>
+                </li>
+              </ul>
+          </span>
+        </div> 
       </div>
-
     </router-link>
+  </div>
 
-    <!-- 
-    <router-link class="btn btn-sm btn-success" :to="{name: 'restaurantDetails', params:{slug: restaurant.slug}}">
-      <i class="fa-solid fa-eye"></i>
-    </router-link> -->
-
-  </section>
 </template>
+
 
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 
-section {
-  font-family: 'Caveat Brush', cursive;
-  margin-bottom: 60px;
-}
-section:hover{
-  z-index: 99;
-}
 .polaroid {
   background: #fff;
   padding: 1rem;
   box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
-  width: 330px;
   color: black;
   margin-left: -10px;
   min-height: 330px;
 }
 
-.polaroid:hover{
-  z-index: 30;
-}
 .polaroid > img{
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 .title{
-
+  font-family: 'Lobster', sans-serif;
   text-align: center;
-    font-size: 3rem;
-    line-height: 2rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  font-size: 3rem;
+  line-height: 2rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.badge{
-    font-weight: 500;
-    display: inline;
-    color: black;
-    font-size: 1.5rem;
-    text-align: center;
-    text-transform: capitalize;
+.my-badge{
+  display: inline;
+  color: black;
+  text-transform: capitalize;
 }
 .item {
-  width: 30%;
+  width: 100%;
   display: inline-block;
   margin-top: 2rem;
   filter: grayscale(100%);
@@ -172,7 +133,7 @@ section:hover{
 }
 .item:hover {
   filter: none;
-  transform: scale(1, 1) rotate(0deg) !important;
+  transform: scale(0.95, 0.95) rotate(0deg) !important;
   transition: all 0.35s;
 }
 

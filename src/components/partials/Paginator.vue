@@ -13,23 +13,20 @@ export default{
 
 <template>
 
-  <div class="container"> 
-    <button
-      v-for="(link, index) in links"
-      @click="$emit('getPage', link.url)"
-      :key="index"
-      :disabled="link.active || !link.url"
-      v-html="link.label"
-      class="btn btn-outline-primary"
-    ></button>
-  </div>
+  <button
+    v-for="(link, index) in links"
+    @click="$emit('getPage', link.url)"
+    :key="index"
+    :disabled="link.active || !link.url"
+    v-html="link.label"
+    class="btn btn-outline-primary">
+  </button>
 
 </template>
 
 
 <style lang="scss">
   .btn{
-    font-family: Lobster;
     color: #260D07;
     background-color: #F2F0E4;
     border: 2px solid #260D07;
@@ -40,9 +37,9 @@ export default{
       border: 2px solid #260D07;
     }
     &:disabled{
-    color: #260D07;
+    color: #260d0770;
     background-color: #F2F0E4;
-    border: 2px solid #260D07;
+    border: 2px solid #260d0770;
     }
   }
 </style>
