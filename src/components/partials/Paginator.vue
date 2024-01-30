@@ -29,19 +29,20 @@ export default{
 
 <style lang="scss">
   .btn{
+    font-family: Lobster;
     color: #260D07;
     background-color: #F2F0E4;
-    border: 1px solid #260D07;
+    border: 2px solid #260D07;
     margin-right: 6px;
     &:hover{
       color: #F2F0E4;
       background-color: #260D07;
-      border: 1px solid #260D07;
+      border: 2px solid #260D07;
     }
     &:disabled{
     color: #260D07;
     background-color: #F2F0E4;
-    border: 1px solid #260D07;
+    border: 2px solid #260D07;
     }
   }
 </style>

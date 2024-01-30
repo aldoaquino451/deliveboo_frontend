@@ -32,7 +32,7 @@ export default{
 
 main {
   background-color: #F2F0E4;
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 ul {
