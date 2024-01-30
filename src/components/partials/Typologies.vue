@@ -31,9 +31,9 @@ export default {
       
       <div class="row">
 
-        <div class="imgpizza col-4 d-none d-xl-block"></div>
+        <div class="imgpizza col-3 d-none d-xl-block"></div>
 
-        <nav class="col-12 col-xl-8">
+        <nav class="col-12 col-xl-9">
           <ul class="d-flex flex-wrap justify-content-center mx-xl-4">
             <li :class="typology.restaurants.length ? 'm-2' : 'd-none'" v-for="typology in store.typologies" :key="typology.id">
 
@@ -77,8 +77,8 @@ nav ul {
 }
 
 button {
-  padding: 0.6em 1em;
-  border: 4px solid #F2F0E4;
+  padding: 0.5em 0.8em;
+  border: 3px solid #F2F0E4;
   transition: ease-in-out 0.3s;
   background-color: transparent;
   color: #F2F0E4;
@@ -92,13 +92,13 @@ button {
 }
  
  button:hover {
-  transform: scale(1.2) rotate(10deg);
+  transform: scale(1.1) rotate(10deg);
   background-color: #fa725a;
   color: white;
  }
 
  .toggle-button.active {
-  transform: scale(1.2) rotate(10deg);
+  transform: scale(1.1) rotate(10deg);
   background-color: #fa725a;
   color: white;
   transition: none;
@@ -109,10 +109,10 @@ label{
 } 
 
 .imgpizza{
-  background-image: url(./pizza2.png);
+  background-image: url(./sushi.png);
   background-size: contain;
   background-repeat: no-repeat;
-  height: 450px;
+  height: 350px;
   background-position: center;
 }
 

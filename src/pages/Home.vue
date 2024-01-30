@@ -37,7 +37,6 @@ export default{
       axios.get(store.apiUrl + endpoint)
         .then( res => {
           store.restaurants = res.data;
-          console.log(res.data);
           this.restaurantTotal = 0;
         })
     },
@@ -86,7 +85,7 @@ export default{
     
     <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
 
-    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-xxl-4 ">
+    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 ">
       <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
     </div>
       
@@ -101,7 +100,7 @@ export default{
 <style lang="scss" scoped>
 
 .my-container {
-  padding: 100px 0;
+  padding: 80px 0 150px;
   width: 90%;
   max-width: 1600px;
   margin: 0 auto;

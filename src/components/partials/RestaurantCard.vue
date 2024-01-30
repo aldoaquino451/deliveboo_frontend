@@ -28,7 +28,7 @@ export default {
             <p class="title fs-1">{{ restaurant.name_restaurant }}</p>
               <ul class="d-flex gap-3 row-gap-0 justify-content-center flex-wrap">
                 <li v-for="typology in restaurant.typologies" :key="typology.id">
-                  <span class="my-badge fs-4">{{ typology.name }}</span>
+                  <span class="my-badge fs-5">{{ typology.name }}</span>
                 </li>
               </ul>
           </span>

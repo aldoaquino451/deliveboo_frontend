@@ -1,3 +1,9 @@
 Deliveboo Frontend 
 ===
-altro
+
+colori:
+- panna: #F2F0E4
+- rosso header: #F23005
+- marrone footer: #260D07
+- rosso chiaro: #F25430
+- rosso scuro: #A63921
