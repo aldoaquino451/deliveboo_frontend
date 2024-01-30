@@ -33,7 +33,7 @@ export default {
 
         <div class="imgpizza col-4 d-none d-xl-block"></div>
 
-        <div class="col-12 col-xl-8 d-flex align-items-center">
+        <div class="col-12 col-xl-8 d-flex">
           <nav>
             <ul class="d-flex flex-wrap justify-content-center">
               <li class="m-2" v-for="typology in store.typologies" :key="typology.id">
@@ -69,12 +69,12 @@ export default {
 
 section{
   background-color: #F23005;
-  padding-top: 30px;
 }
 
 nav ul {
     list-style-type: none;
-    padding-top: 100px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 button {
@@ -110,11 +110,9 @@ label{
 } 
 
 .imgpizza{
-  background-image: url(./pizza2.png);
+  background-image: url(./sushi.png);
   background-size: contain;
   background-repeat: no-repeat;
-  height: 450px;
-  background-position: center;
 }
 
 .wave{

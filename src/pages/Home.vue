@@ -83,20 +83,21 @@ export default{
 
   <div class="container d-flex justify-content-center">
     
-    <div class="col-12 col-md-10">
+    <div class="col-12">
 
-      <p v-if="restaurantTotal != 0" class="text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
+      <p v-if="restaurantTotal != 0" class="results text-center">Risultati della ricerca: {{ restaurantTotal }}</p>
 
-      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+      <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
+
+      <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-center">
         <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
       </div>
         
       <p v-else class="text-center">Non ci sono ristoranti per le tipologie scelte!</p>
 
-      <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
     </div>
 
-    <div class="cook col-2 d-none d-xxl-block"></div>
+    <div class="d-none"></div>
 
   </div>
 
@@ -104,7 +105,12 @@ export default{
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+.results{
+    font-family: lobster;
+    font-size: 1.5em;
+  }
 
   .cook{
     right: 100px;
