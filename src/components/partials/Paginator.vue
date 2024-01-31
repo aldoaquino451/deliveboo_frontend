@@ -26,20 +26,28 @@ export default{
 
 
 <style lang="scss" scoped>
-  .btn{
-    color: #260D07;
-    background-color: #F2F0E4;
+.btn{
+  color: #260D07;
+  background-color: #F2F0E4;
+  border: 2px solid #260D07;
+  margin-right: 6px;
+  &:hover{
+    color: #F2F0E4;
+    background-color: #260D07;
     border: 2px solid #260D07;
-    margin-right: 6px;
-    &:hover{
-      color: #F2F0E4;
-      background-color: #260D07;
-      border: 2px solid #260D07;
-    }
-    &:disabled{
-    color: #260d0770;
-    background-color: #F2F0E4;
-    border: 2px solid #260d0770;
-    }
   }
+  &:disabled{
+  color: #260d0770;
+  background-color: #F2F0E4;
+  border: 2px solid #260d0770;
+  }
+}
+
+@media screen and (max-width: 568px) {
+.btn{
+  padding: 4px 10px !important;
+  font-size: 14px !important;
+}
+}
+
 </style>

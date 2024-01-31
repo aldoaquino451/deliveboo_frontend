@@ -21,7 +21,7 @@ export default{
 
     <div class="container py-5">
 
-      <h3 class="logo-text">DeliveBoo</h3>
+      <h3 class="logo-text">Deliveboo</h3>
 
       <div class="row">
 
@@ -109,5 +109,16 @@ footer{
     color: rgb(162, 161, 161);
     font-size: 14px;
   }
+}
+
+@media screen and (max-width: 576px) {
+footer{
+
+  .logo-text{
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+  }
+}
+
 }
 </style>

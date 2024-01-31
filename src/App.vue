@@ -43,4 +43,10 @@ ul {
 a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 576px) {
+main {
+  padding-top: 80px;
+}
+}
 </style>

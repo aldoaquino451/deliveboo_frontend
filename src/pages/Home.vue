@@ -111,5 +111,16 @@ export default{
   }
   
 }
+
+@media screen and (max-width: 568px) {
+  
+.my-container {
+
+  .results{
+    font-size: 1rem;
+  }
+  
+}
+}
   
 </style>

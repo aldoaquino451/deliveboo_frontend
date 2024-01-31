@@ -20,7 +20,7 @@ export default {
       <div id="dropin-container"></div>
 
       <div class="text-end">
-        <button id="submit-button" class="pay-validate btn btn-primary btn-lg btn-block mt-4">Invia Pagamento</button>
+        <button id="submit-button" class="pay-validate btn btn-primary btn-md-lg btn-block mt-4">Invia Pagamento</button>
       </div>
 
     </div>
@@ -28,11 +28,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  .card-header-cs{
-    font-family: Lobster;
-    text-align: center;
-  } h5{
+  h5{
     font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
   }
   .card-validate {
   width: 100%;
@@ -56,6 +55,13 @@ export default {
   &:hover{
   background-color: #F23005;
  }
+}
+
+
+@media screen and (max-width: 576px) {
+h5{
+  font-size: 1.4rem;
+}
 }
 
 </style>
