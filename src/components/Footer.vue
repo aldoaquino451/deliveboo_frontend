@@ -84,6 +84,9 @@ export default{
   background-image: url(./wavefooter.svg);
   background-size: cover;
   transform: scaleX(-1);
+  position: relative;
+  top: 100px;
+  border: none;
 }
 
 footer{

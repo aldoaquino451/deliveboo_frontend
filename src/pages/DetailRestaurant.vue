@@ -212,8 +212,8 @@ export default {
   .image {
     height: 450px;
     background-color: white;
-    border-bottom-right-radius: 20%;
-    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 75px;
+    border-bottom-left-radius: 75px;
     overflow: hidden;
   }
 

@@ -37,7 +37,7 @@ export default{
         <span class="logo-text">Deliveboo</span>
 
         <!-- nav menu per login e carrello -->
-        <ul class="d-flex align-items-center h-100">
+        <ul class="user-cart d-flex align-items-center h-100">
           <li>
             <a :href="store.loginUrl">
               <div class="user"></div>
@@ -70,6 +70,11 @@ header {
 
   .logo-image {
     height: 70%;
+    width: 130px;
+  }
+
+  .user-cart {
+    width: 130px;
   }
   .logo-text{
     font-family: "Lobster", sans-serif;
@@ -115,16 +120,20 @@ header {
 
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
 
 header {
   height: 80px;
   .logo-image {
-    height: 50%;  
+    height: 50%; 
+    width: auto; 
   }
 
   .logo-text{
     font-size: 3rem;   
+  }
+  .user-cart {
+    width: auto;
   }
 
   ul {

@@ -44,7 +44,7 @@ a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
 main {
   padding-top: 80px;
 }
