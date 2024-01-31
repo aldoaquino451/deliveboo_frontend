@@ -74,8 +74,8 @@ export default {
 <template>
 
   <!-- modale per la conferma dello "svuota carrello" -->
-  <div v-if="store.isPopupVisible" id="modal">
-    <div class="modal-content p-4 px-5">
+  <div v-if="store.isPopupVisible" id="modal" class="d-flex align-items-center">
+    <div class="modal-content py-3 px-5">
       <div @click="store.isPopupVisible = false" class="close-button d-flex justify-content-end mb-3">
         <i class="fa-solid fa-circle-xmark fs-4"></i>
       </div>
@@ -102,15 +102,15 @@ export default {
           <div class="my-card-restaurant" >
             <div class="details-restaurant my-card w-100 p-4">
               <h1 class="title text-center m-0">{{ restaurant.name_restaurant }}</h1>
-              <div class="d-flex gap-2 justify-content-center">
+              <div class="text d-flex gap-2 justify-content-center">
                 <span
-                  class="text-capitalize fs-5"
+                  class="text-capitalize fs-6 fs-md-5"
                   v-for="typology in restaurant.typologies"
                   :key="typology.id"
                   >{{ typology.name }}
                 </span>
               </div>
-              <p class="mt-4 fs-5 fst-italic text-center d-flex justify-content-center gap-1">
+              <p class="text mt-4 fs-6 fs-md-5 fst-italic text-center d-flex justify-content-center gap-1">
                 <i class="fa-solid fa-quote-left mb-2"></i>
                 {{ restaurant.description }}
                 <i class="fa-solid fa-quote-right mb-2"></i>
@@ -126,7 +126,7 @@ export default {
                         class="rounded-circle object-fit-cover"
                         :src="imageUrl + 'menu.png'"
                         alt=""/>
-                      <p class="text-capitalize m-0 mt-2 fs-6">menu completo</p>
+                      <p class="text-capitalize m-0 mt-2 fs-6">menu</p>
                     </a>
 
                     <a href="#products"
@@ -185,7 +185,6 @@ export default {
 
 #modal {
   position: fixed;
-  padding-top: 100px;
   z-index: 999;
   right: 0;
   left: 0;
@@ -195,7 +194,8 @@ export default {
 
   .modal-content {
     width: 400px;
-    margin: 100px auto;
+    margin: 0 auto;
+    margin-bottom: 100px;
     border-radius: 20px;
     background-color: white;
     .close-button {
@@ -268,6 +268,29 @@ export default {
   h2 {
     font-size: 2.5rem;
   }
+}
+
+@media screen and (max-width: 576px) {
+
+#heroes {
+
+  .restaurant-info {
+    
+    .my-card {
+      
+      .title {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+#products {
+  h2 {
+    font-size: 2rem;
+  }
+}
+
 }
 
 @media screen and (max-width: 767px) {

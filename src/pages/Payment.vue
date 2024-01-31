@@ -266,9 +266,9 @@ export default {
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                  <span>{{ cartItem.product.name }}</span>
-                  <div>
-                    <span>{{ cartItem.product.price }} &euro;</span>
+                  <span class="name">{{ cartItem.product.name }}</span>
+                  <div class="price">
+                    <span>&euro;{{ cartItem.product.price }} </span>
                     <span> x{{ cartItem.quantity }}</span>
                   </div>
                 </li>
@@ -320,6 +320,14 @@ section{
 .cart-summary{
   border-radius: 20px;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+
+  .name {
+    width: calc(100% - 100px);
+  }
+  .price {
+    width: 100px;
+    text-align: end;
+  }
 }
 
 .form-control{
@@ -328,7 +336,7 @@ section{
   border-radius: 25px;
   padding-left: 20px;
   &:focus {
-    box-shadow:  0px 10px 15px #a6392142;
+    box-shadow:  0px 4px 12px #a6392142;
     border-color: #A63921;
   }
  } 
@@ -355,5 +363,10 @@ section{
  }
 }
 
+@media screen and (max-width: 576px) {
+.step{
+  font-size: 1.4rem;
+}
+}
 
 </style>

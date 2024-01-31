@@ -54,12 +54,12 @@ export default {
 
     toggleModalCart() {
       const cart = document.getElementById('modal-cart');
-      cart.classList.toggle('d-block');
+      cart.classList.toggle('d-flex');
     },
 
     toggleModalProduct() {
       const product = document.getElementById('modal-product');
-      product.classList.toggle('d-block');
+      product.classList.toggle('d-flex');
     },
   },
 
@@ -73,8 +73,8 @@ export default {
 <template>
   <section class="cart-section">
     <!-- modale per la conferma dello "svuota carrello" -->
-    <div id="modal-cart">
-      <div class="modal-content p-4 px-5">
+    <div id="modal-cart" class="align-items-center">
+      <div class="modal-content px-5 py-3">
         <div @click="toggleModalCart" class="close-button d-flex justify-content-end mb-3">
           <i class="fa-solid fa-circle-xmark fs-4"></i>
         </div>
@@ -87,8 +87,8 @@ export default {
     </div>
 
     <!-- modale per la conferma della rimozione prodotto -->
-    <div id="modal-product" class="">
-      <div class="modal-content p-4 px-5">
+    <div id="modal-product" class="align-items-center">
+      <div class="modal-content px-5 py-3">
         <div @click="toggleModalProduct" class="close-button d-flex justify-content-end mb-3">
           <i class="fa-solid fa-circle-xmark fs-4"></i>
         </div>
@@ -109,15 +109,15 @@ export default {
         <h4 class="mb-3 restaurant-name">{{ restaurantName }}</h4>
 
         <ol class="list-group list-group-numbered">
-          <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="cart-items ps-4 rounded-5 mb-3 list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
+          <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="cart-items ps-4 rounded-5 mb-3 flex-column flex-md-row list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-md-2 me-auto">
               <p class="fw-bold mb-1">
                 {{ cartItem.product.name }}
-                <span class="ps-3">&euro;{{ cartItem.product.price }}</span>
+                <span class="ps-md-3 d-block d-md-inline">&euro;{{ cartItem.product.price }}</span>
               </p>
               {{ cartItem.product.ingredients }}
             </div>
-            <div class="container-buttons d-inline-block mt-2">
+            <div class="container-buttons d-inline-block mt-2 mb-2 mb-md-0">
               <button @click="removeProduct(cartItem)" class="px-2 endcart py-1 plus-minus">
                 <i class="fa-solid fa-minus"></i>
               </button>
@@ -135,9 +135,9 @@ export default {
 
         <div>
           <div class="d-flex justify-content-end">
-            <button @click="toggleModalCart" class="me-3 py-2 px-4 endcart">Svuota</button>
+            <button @click="toggleModalCart" class="me-3 py-2 px-2 px-md-4 endcart">Svuota</button>
             <router-link to="/payment">
-              <button type="button" class="py-2 px-4 endcart">Procedi all'ordine</button>
+              <button type="button" class="py-2 px-2 px-md-4 endcart">Procedi all'ordine</button>
             </router-link>
           </div>
         </div>
@@ -202,7 +202,8 @@ export default {
 
   .modal-content {
     width: 400px;
-    margin: 300px auto;
+    margin: 0 auto;
+    margin-bottom: 150px;
     border-radius: 20px;
     background-color: white;
     .close-button {

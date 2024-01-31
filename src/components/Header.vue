@@ -28,13 +28,13 @@ export default{
       <div class="container h-100 d-flex justify-content-between align-items-center">
 
         <!-- immagine del logo che porta alla home -->
-        <div class="h-75">
+        <div class="logo-image">
           <router-link to="/">
             <img class="h-100" src="/logoristo.png" alt="logoristo">
           </router-link>
         </div>
 
-        <span class="logo-text">DeliveBoo</span>
+        <span class="logo-text">Deliveboo</span>
 
         <!-- nav menu per login e carrello -->
         <ul class="d-flex align-items-center h-100">
@@ -67,6 +67,10 @@ header {
   height: 100px;
   width: 100%;
   background-color: #F23005;
+
+  .logo-image {
+    height: 70%;
+  }
   .logo-text{
     font-family: "Lobster", sans-serif;
     color: #F2F0E4;
@@ -110,6 +114,36 @@ header {
   }
 
 }
+
+@media screen and (max-width: 576px) {
+
+header {
+  height: 80px;
+  .logo-image {
+    height: 50%;  
+  }
+
+  .logo-text{
+    font-size: 3rem;   
+  }
+
+  ul {
+    gap: 20px; 
+
+    .cart{
+      height: 40px;   
+      width: 40px;  
+    }
+
+    .user{
+      height: 40px;     
+      width: 40px;   
+    }
+  }
+}
+
+}
+
 
 </style>
 

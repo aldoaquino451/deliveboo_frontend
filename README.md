@@ -7,3 +7,7 @@ colori:
 - marrone footer: #260D07
 - rosso chiaro: #F25430
 - rosso scuro: #A63921
+
+
+## FIX
+- Da sistemare le immagini di ristorante e dei prodotti

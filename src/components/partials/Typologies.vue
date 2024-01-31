@@ -31,7 +31,7 @@ export default {
       
       <div class="row">
 
-        <div class="imgpizza col-3 d-none d-xl-block"></div>
+        <div class="img-pizza col-3 d-none d-xl-block"></div>
 
         <nav class="col-12 col-xl-9">
           <ul class="d-flex flex-wrap justify-content-center mx-xl-4">
@@ -84,31 +84,31 @@ button {
   color: #F2F0E4;
   font-weight: bolder;
   font-size: 20px;
-  font-family: sans-serif;
   margin: 3px;
   cursor: pointer;
   border-radius: 15px;
   text-transform: capitalize;
+  
+  &:hover {
+   transform: scale(1.1) rotate(10deg);
+   background-color: #fa725a;
+   color: white;
+  }
+  &.toggle-button.active {
+   transform: scale(1.1) rotate(10deg);
+   background-color: #fa725a;
+   color: white;
+   transition: none;
+  }
 }
  
- button:hover {
-  transform: scale(1.1) rotate(10deg);
-  background-color: #fa725a;
-  color: white;
- }
 
- .toggle-button.active {
-  transform: scale(1.1) rotate(10deg);
-  background-color: #fa725a;
-  color: white;
-  transition: none;
-}
 
 label{
   cursor: pointer;
 } 
 
-.imgpizza{
+.img-pizza{
   background-image: url(./sushi.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -130,4 +130,19 @@ label{
   margin: 0 auto;
 }
 
+@media screen and (max-width: 568px) {
+  
+  nav ul {
+    padding-top: 50px;
+  }
+
+  button {
+  padding: 0.4em 0.6em;
+  border: 2px solid #F2F0E4;
+  font-weight: normal;
+  font-size: 16px;
+  margin: 3px;
+  border-radius: 10px;
+  }
+}
 </style>
