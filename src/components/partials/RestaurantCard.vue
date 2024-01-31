@@ -8,8 +8,8 @@
         @mouseleave="handleHover(false)"
       >
         <div class="polaroid">
-          <!-- <img :src="restaurant?.image" /> -->
-          <img src="/logoristo.png" />
+          <img :src="restaurant?.image" />
+          <!-- <img src="/logoristo.png" /> -->
           <span class="caption">
             <p class="title fs-1">{{ restaurant.name_restaurant }}</p>
             <ul class="d-flex gap-3 row-gap-0 justify-content-center flex-wrap">
@@ -51,7 +51,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 
 .polaroid {
   background: #fff;
@@ -59,7 +58,7 @@ export default {
   box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
   color: black;
   margin-left: -10px;
-  height: 450px;
+  height: 375px;
 }
 
 .polaroid > img{
@@ -110,17 +109,18 @@ export default {
   right: 5%;
   box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
   transition: all 0.35s;
+  z-index: -1;
 }
 
 .item:hover {
   filter: none;
   transform: scale(1.2, 1.2) rotate(0deg) !important;
   transition: all 0.35s;
-  z-index: 99;
+  z-index: 999;
 }
 
 .polaroid:hover{
-  z-index: 98;
+  z-index: 999;
 }
 
 .item:hover .polaroid:before {
