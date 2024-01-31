@@ -85,7 +85,7 @@ export default{
     
     <Paginator v-if="links.length > 3" :links="links" @getPage="getPage"/>
 
-    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 ">
+    <div v-if="store.restaurants.length != 0" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 justify-content-center my-5">
       <RestaurantCard v-for="restaurant in store.restaurants" :key="restaurant.id" :restaurant="restaurant"/> 
     </div>
       
