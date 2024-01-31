@@ -21,9 +21,9 @@ export default{
 
     <div class="container py-5">
 
-      <h3 class="logo-text">Deliveboo</h3>
+      <h3 class="logo-text text-center">Deliveboo</h3>
 
-      <div class="row">
+      <div class="row text-center">
 
         <div class="col-6 col-md-4 col-lg-3 mb-5">
           <h5 class="mb-3">Uniamo le forze</h5>
@@ -58,8 +58,8 @@ export default{
         </div>
 
         <div class="col-6 col-md-4 col-lg-3 offset-md-4 offset-lg-0 mb-5">
-          <h5 class="mb-3 text-md-center text-lg-start">Seguici</h5>
-          <ul class="d-flex gap-3 fs-4 justify-content-md-center justify-content-lg-start">
+          <h5 class="mb-3 text-md-center">Seguici</h5>
+          <ul class="d-flex gap-3 fs-4 justify-content-center">
             <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
