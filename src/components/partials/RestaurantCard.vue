@@ -40,7 +40,7 @@ export default {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 

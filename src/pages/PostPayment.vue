@@ -83,7 +83,7 @@ export default {
         </li>
       </ol>
       
-      <p class="badge bg-dark-subtle fs-6 mb-3">Totale: &euro;{{ order.total_price }}</p>
+      <p class="total text-decoration-underline text-end mb-3">Totale: &euro;{{ order.total_price }}</p>
     </div>
 
     <div v-else>
@@ -99,15 +99,23 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 #order-container {
   width: 80%;
   max-width: 800px;
   min-height: 500px;
   margin: 0 auto;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: white;
   padding: 30px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.total{
+  font-size: x-large;
+  font-weight: bold;
 }
 </style>

@@ -94,8 +94,8 @@ export default {
         </div>
         <p class="text-center mb-4 mt-2">Sei sicuro di voler rimuovere questo prodotto dal carrello?</p>
         <div class="d-flex gap-3 justify-content-center">
-          <button @click="removeFromCart(cartItem)" class="btn btn-danger">Rimuovi</button>
-          <button @click="toggleModalProduct" class="btn btn-secondary">Annulla</button>
+          <button @click="removeFromCart(cartItem)" class="px-3 py-2 endcart">Rimuovi</button>
+          <button @click="toggleModalProduct" class="px-3 py-2 endcart">Annulla</button>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@ export default {
       <h2 class="mb-4 text-cart text-uppercase text-center">Carrello <i class="fa-solid fa-cart-shopping"></i></h2>
       
       <div v-if="store.cart.length > 0">
-        <h4 class="mb-3">{{ restaurantName }}</h4>
+        <h4 class="mb-3 restaurant-name">{{ restaurantName }}</h4>
 
         <ol class="list-group list-group-numbered">
           <li v-for="cartItem in store.cart" :key="cartItem.product.id" class="cart-items ps-4 rounded-5 mb-3 list-group-item d-flex justify-content-between align-items-start">
@@ -151,6 +151,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+.restaurant-name{
+  font-family: Lobster;
+  font-size: x-large;
+}
 
 .cart-section{
   margin-top: 100px;

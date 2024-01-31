@@ -25,7 +25,7 @@ export default{
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
   .btn{
     color: #260D07;
     background-color: #F2F0E4;

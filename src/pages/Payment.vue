@@ -190,11 +190,11 @@ export default {
       <div class="row">
         
         <!-- Form dati utente e pagamento -->
-        <div class="col-md-8 mb-4">
+        <div class="col-12 col-lg-8 mb-4">
           <!-- DATI UTENTE -->
-          <div id="button-validate" class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Step 1 - Inserimento dati utente</h5>
+          <div id="button-validate" class="button-card card mb-4">
+            <div class="py-3">
+              <h5 class="mb-0 step">Step 1 - Inserimento dati utente</h5>
             </div>
             <div class="card-body">
 
@@ -238,9 +238,11 @@ export default {
                   <span v-if="validationErrors.telefono" class="text-danger">{{ validationErrors.telefono }}</span>
                 </div>
 
-                <button id="button-validate" class="btn btn-primary btn-lg btn-block mt-4" @click.prevent="processPayment">
-                  Procedi al pagamento
-                </button>
+                <div class="text-end">
+                  <button id="button-validate" class="btn button-validate mt-4" @click.prevent="processPayment">
+                    Procedi al pagamento
+                  </button>
+                </div>
 
               </form>
 
@@ -256,10 +258,10 @@ export default {
         </div>
 
         <!-- Riepilogo Carrello -->
-        <div class="col-md-4 mb-4">
-          <div class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Riepilogo carrello</h5>
+        <div class="col-12 col-lg-4 mb-4">
+          <div class="card mb-4 cart-summary">
+            <div class="py-3">
+              <h5 class="mb-0 step">Riepilogo carrello</h5>
             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
@@ -297,7 +299,13 @@ section{
   margin-bottom: 100px;
 }
 
-#button-validate {
+.step{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-card {
   width: 100%;
   margin: 0 auto;
   border-radius: 20px;
@@ -307,6 +315,44 @@ section{
   ol {
     margin-bottom: 100px;
   }
+}
+
+.cart-summary{
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-control{
+  border: 1px solid #A63921;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 25px;
+  padding-left: 20px;
+  &:focus {
+    box-shadow:  0px 10px 15px #a6392142;
+    border-color: #A63921;
+  }
+ } 
+
+#form6Example6::-webkit-inner-spin-button,
+#form6Example6::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#form6Example6 {
+  -moz-appearance: textfield;
+}
+
+.button-validate{
+  border: none;
+  border-radius: 25px;
+  background-color: #A63921;
+  color: white;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  &:hover{
+  background-color: #F23005;
+ }
 }
 
 

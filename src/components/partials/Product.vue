@@ -67,7 +67,7 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .product-card {
   height: 250px;
