@@ -16,9 +16,10 @@ export default{
     totalQuantity() {
       return store.cart.reduce((total, cartItem) => total + cartItem.quantity, 0);
     }
-  }
+  },
 
 }
+
 </script>
 
 <template>
@@ -43,13 +44,13 @@ export default{
             </a>
           </li>
           <li>
-            <router-link to="/cart">
+            <a href="/cart">
               <!-- <i class="fa-solid fa-cart-shopping"></i> -->
               <div class="position-relative">
-                <router-link to="/cart"><div class="cart"></div></router-link>
+                  <div class="cart"></div>
                 <div v-if="totalQuantity > 0" class="cart-quantity"><span>{{ totalQuantity }}</span></div>
               </div>
-            </router-link>
+            </a>
           </li>
         </ul>
 
