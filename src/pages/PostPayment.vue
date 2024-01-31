@@ -99,7 +99,7 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 #order-container {
   width: 80%;
