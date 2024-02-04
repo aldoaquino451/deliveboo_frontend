@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 d-flex justify-content-center">
+  <div class="col-12 d-flex justify-content-center mb-5">
     <router-link :to="{ name: 'detailRestaurant', params: { slug: restaurant.slug } }">
       <div
         class="item"
@@ -114,7 +114,7 @@ export default {
 
 .item:hover {
   filter: none;
-  transform: scale(1.2, 1.2) rotate(0deg) !important;
+  transform: scale(1.1, 1.1) rotate(0deg) !important;
   transition: all 0.35s;
   z-index: 999;
 }
