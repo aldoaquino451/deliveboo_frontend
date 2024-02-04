@@ -117,7 +117,7 @@ export default {
       return /^[a-zA-Z]{2,}$/.test(this.form.cognome);
     },
     isValidAddress() {
-      return /^[a-zA-Z0-9 ]{5,}$/.test(this.form.indirizzo);
+      return /^[a-zA-Z0-9, ]{5,}$/.test(this.form.indirizzo);
     },
     isValidEmail() {
       return /^[\w.-]+@[a-zA-Z\d.-]+.[a-zA-Z]{2,}$/.test(this.form.email);

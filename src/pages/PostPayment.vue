@@ -115,7 +115,7 @@ export default {
 }
 
 .total{
-  font-size: x-large;
+  font-size: large;
   font-weight: bold;
 }
 </style>
